@@ -33,7 +33,7 @@ module.exports = {
       '@css': resolve('src/assets/css'),
       '@images': resolve('src/assets/images'),
       '@js': resolve('src/assets/js'),
-      '@plugins': resolve('src/plugins'),
+      '@pls': resolve('src/plugins'),
       '@cpt': resolve('src/components'),
       '@tp': resolve('src/components/template'),
       '@cpx': resolve('src/components-x'),

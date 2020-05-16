@@ -43,6 +43,8 @@
 </template>
 
 <script>
+    // ================================================================ plugins
+    const $msg = import('@pls/msg')
 	// ================================================================ element-ui
 	import Encrypt from '@com/encrypt'
 	import { Form } from 'element-ui'
@@ -93,17 +95,17 @@
 			submit(){
 				this.$refs.form.validate( valid => {
 					if(valid){
-						$http.submit(this,'auth/login',{ 
+						$http.submit(this,'auth/login',{
 							param: this.model,
 							noToken: true,
 							loading: false
 						}).then(data=>{
-							if($fn.hasObject(data)){ 
+							if($fn.hasObject(data)){
 								$fn.local('user',data)
 								$http.submit(this,'employee/currentuser',{dataName:null}).then(rs=>{
-									this.$msg('登录成功')
+                                    $msg.then(f => f('登录成功') )
 									if( $fn.hasObject(rs)){ $fn.local('user',{...data,...rs}) }
-									
+
 									// 记住密码
 									if(this.checked){
 										const model = JSON.parse(JSON.stringify(this.model))
@@ -112,13 +114,13 @@
 									}else{
 										$fn.removePer('remember')
 									}
-									
+
 									this.$router.replace('/')
 								})
 							}
 						})
 					}else{
-						this.$msg('登录验证不通过',0)
+                        $msg.then(f => f('登录验证不通过'), 0 )
 					}
 				})
 			},

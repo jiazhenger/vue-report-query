@@ -93,7 +93,7 @@ export default {
 		let token = this.getQuery('token');
 		let user = this.getUser();
 		let rs = null
-		
+
 		if(token){
 			rs = token
 		}else if(user.token){
@@ -110,6 +110,14 @@ export default {
 			return {}
 		}
 	},
+    // ======================================================================== 调用异步加载方法
+    async asy(p){
+        let m = ()=>{}
+        await p.then( f => {
+            m = f
+        })
+        return m
+    },
 	// ======================================================================== 登录后跳转
 	loginTo(flag){
 		if(flag){
