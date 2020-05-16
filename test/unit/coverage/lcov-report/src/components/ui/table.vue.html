@@ -1,0 +1,246 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for src/components/ui/table.vue</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="..\..\..\prettify.css" />
+    <link rel="stylesheet" href="..\..\..\base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(..\..\..\sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="..\..\..\index.html">All files</a> / <a href="index.html">src/components/ui</a> table.vue
+    </h1>
+    <div class='clearfix'>
+    </div>
+  </div>
+  <div class='status-line low'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">&lt;template&gt;  
+	&lt;Loading :loading='loading'&gt;
+		&lt;el-table 
+			ref							= 'table'
+			:data						= 'data' 
+			:empty-text					= 'emptyText'
+			:size 						= 'size'
+			:height 					= 'height'
+			highlight-current-row
+			@selection-change			= 'getRows($event)'
+			element-loading-text 		= '数据加载中'
+			element-loading-background	= 'rgba(0, 0, 0, 0.1)'
+			:style						= '{minHeight:mh}'
+		&gt;
+			&lt;slot&gt;&lt;/slot&gt;
+		&lt;/el-table&gt;
+		&lt;template v-if='fn.hasObject(pag)'&gt;&lt;Pagination :pag='pag' @change='onChange' /&gt;&lt;/template&gt;
+	&lt;/Loading&gt;
+&lt;/template&gt;
+&nbsp;
+&lt;script&gt;
+	// ================================================================ element-ui
+<span class="cstat-no" title="statement not covered" >	import { Table,TableColumn } from 'element-ui'</span>
+<span class="cstat-no" title="statement not covered" >	Vue.use(Table)</span>
+<span class="cstat-no" title="statement not covered" >	Vue.use(TableColumn)</span>
+	// ================================================================  class
+	export default {
+		components:{
+<span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >			Loading: ()=&gt;import('@cpx/loading-wraper'),</span></span>
+<span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >			Pagination: ()=&gt;import('@cpt/ui/pagination'),</span></span>
+		},
+		props:{
+			size:{ type:String, default:'mini' },
+			data:{ type:Array, default:[] },
+			loading:{ type:Boolean, default:true },
+<span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >			pag:{ type:Object, default:()=&gt;({}) },</span></span>
+			height:Number,
+			mh:{ type:String, default:'90px' },
+			emptyText:{ type:String, default:'暂无数据' },
+		},
+<span class="fstat-no" title="function not covered" >		data(){</span>
+<span class="cstat-no" title="statement not covered" >			return {</span>
+				fn:$fn,
+				keys:[]
+			}
+		},
+		methods:{
+<span class="fstat-no" title="function not covered" >			getRows(v){</span>
+<span class="cstat-no" title="statement not covered" >				this.keys = v</span>
+<span class="cstat-no" title="statement not covered" >				this.$emit('selection-change',v)</span>
+			},
+			// 添加选中状态
+<span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >			addRows(rows){</span></span>
+<span class="cstat-no" title="statement not covered" >				this.clear()</span>
+<span class="cstat-no" title="statement not covered" >				if(rows){</span>
+<span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >					rows.forEach(row =&gt; {</span></span>
+<span class="cstat-no" title="statement not covered" >	            		this.$refs.table.toggleRowSelection(row, true);</span>
+	          		})
+				}
+			},
+			// 清除选择框选择中状态
+<span class="fstat-no" title="function not covered" >			clear(){</span>
+<span class="cstat-no" title="statement not covered" >				this.$refs.table.clearSelection()</span>
+			},
+<span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >			onChange(v){ this.$emit('change',v)}</span></span>
+		}
+	}
+&lt;/script&gt;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Fri May 01 2020 02:59:20 GMT+0800 (GMT+08:00)
+</div>
+</div>
+<script src="..\..\..\prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="..\..\..\sorter.js"></script>
+</body>
+</html>

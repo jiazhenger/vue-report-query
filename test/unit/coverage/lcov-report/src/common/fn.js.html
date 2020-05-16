@@ -1,0 +1,384 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for src/common/fn.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="..\..\prettify.css" />
+    <link rel="stylesheet" href="..\..\base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(..\..\sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="..\..\index.html">All files</a> / <a href="index.html">src/common</a> fn.js
+    </h1>
+    <div class='clearfix'>
+    </div>
+  </div>
+  <div class='status-line low'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">/* ====================================== 全局变量及方法  ====================================== */
+<span class="cstat-no" title="statement not covered" >import Storage from './sessionStorage'</span>
+export default <span class="fstat-no" title="function not covered" ><span class="fstat-no" title="function not covered" ><span class="fstat-no" title="function not covered" ><span class="fstat-no" title="function not covered" ><span class="fstat-no" title="function not covered" ><span class="fstat-no" title="function not covered" ><span class="fstat-no" title="function not covered" ><span class="fstat-no" title="function not covered" ><span class="fstat-no" title="function not covered" ><span class="fstat-no" title="function not covered" ><span class="fstat-no" title="function not covered" ><span class="fstat-no" title="function not covered" ><span class="fstat-no" title="function not covered" ><span class="fstat-no" title="function not covered" ><span class="fstat-no" title="function not covered" ><span class="fstat-no" title="function not covered" ><span class="fstat-no" title="function not covered" ><span class="fstat-no" title="function not covered" ><span class="fstat-no" title="function not covered" ><span class="fstat-no" title="function not covered" >{</span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span>
+	c0:'#409EFF',
+	c1:'#FF5218',
+	// ========================================================================  判断数据类型
+	// 判断数据是否是对象 {}
+	isObject(obj){ <span class="cstat-no" title="statement not covered" >return {}.toString.call(obj) === '[object Object]' },</span>
+	// 判断数据是否是对象{}，且对象长度 &gt;0
+	hasObject(obj){ <span class="cstat-no" title="statement not covered" >return this.isObject(obj) &amp;&amp; Object.keys(obj).length &gt; 0 },</span>
+	// 判断数据是否是函数 function
+	isFunction(obj){ <span class="cstat-no" title="statement not covered" >return {}.toString.call(obj) === '[object Function]' },</span>
+	// 判断数据是否是数组 []
+	isArray(obj){ <span class="cstat-no" title="statement not covered" >return {}.toString.call(obj) === '[object Array]' },</span>
+	// 判断数据是否是数级 []，且长度&gt;0
+	hasArray(obj){ <span class="cstat-no" title="statement not covered" >return this.isArray(obj) &amp;&amp; obj.length &gt; 0 },</span>
+//	// 判断数据是否是字符串
+	isString(obj){ <span class="cstat-no" title="statement not covered" >return {}.toString.call(obj) === '[object String]' },</span>
+	// 判断数据是否是数字
+	isNumber(obj){ <span class="cstat-no" title="statement not covered" >return {}.toString.call(obj) === '[object Number]' },</span>
+//	// 判断数据是否有效
+	isEmpty(obj){ <span class="cstat-no" title="statement not covered" >return obj === null || obj === undefined || obj === '' },</span>
+	isValid(obj){ <span class="cstat-no" title="statement not covered" >return !this.isEmpty(obj) || obj === 0 || obj === false },</span>
+	// ======================================================================== redux
+	loading(bool,msg){
+		const loading = <span class="cstat-no" title="statement not covered" >document.querySelector('#ubLoading')</span>
+<span class="cstat-no" title="statement not covered" >		if(!loading) <span class="cstat-no" title="statement not covered" >r</span>eturn</span>
+<span class="cstat-no" title="statement not covered" >		if(bool){</span>
+<span class="cstat-no" title="statement not covered" >			loading.querySelector('.ub-loading-msg').innerHTML = msg || '数据加载中'</span>
+<span class="cstat-no" title="statement not covered" >			loading.style.display = 'block'</span>
+		}else{
+<span class="cstat-no" title="statement not covered" >			loading.style.display = 'none'</span>
+		}
+	},
+	toast(msg,callback){
+		const toast = <span class="cstat-no" title="statement not covered" >document.querySelector('#ubToast')</span>
+<span class="cstat-no" title="statement not covered" >		if(!toast) <span class="cstat-no" title="statement not covered" >r</span>eturn</span>
+<span class="cstat-no" title="statement not covered" >		toast.style.display = 'block'</span>
+<span class="cstat-no" title="statement not covered" >		toast.querySelector('.ub-toast').innerHTML = msg;</span>
+<span class="cstat-no" title="statement not covered" >		setTimeout(<span class="fstat-no" title="function not covered" >()=&gt;</span>{ <span class="cstat-no" title="statement not covered" >toast.style.display = 'none' },</span>1500);</span>
+<span class="cstat-no" title="statement not covered" >		callback&amp;&amp;callback()</span>
+	},
+	// ======================================================================== 本地存储配置
+	local(name,data){
+		let sname =  <span class="cstat-no" title="statement not covered" >name || 'user';</span>
+<span class="cstat-no" title="statement not covered" >		if(this.isValid(data)){</span>
+<span class="cstat-no" title="statement not covered" >			Storage.set(sname,data);</span>
+		}else {
+			let gname = <span class="cstat-no" title="statement not covered" >Storage.get(sname);</span>
+<span class="cstat-no" title="statement not covered" >			return gname;</span>
+		}
+	},
+	remove(name){
+		let sname =  <span class="cstat-no" title="statement not covered" >name || 'user';</span>
+<span class="cstat-no" title="statement not covered" >		Storage.remove(sname);</span>
+	},
+	// 绑定值
+	val(v){<span class="cstat-no" title="statement not covered" >return this.isValid(v) ? v : '--'},</span>
+	nan(v){<span class="cstat-no" title="statement not covered" >return !isNaN(v) ? v : '--'},</span>
+	// ======================================================================== 获取 url 参数
+	getQuery(id){
+		let hash = <span class="cstat-no" title="statement not covered" >window.location.search || window.location.hash</span>
+		let stack = <span class="cstat-no" title="statement not covered" >{}</span>
+<span class="cstat-no" title="statement not covered" >		if(hash.indexOf('?') !== -1){</span>
+			let search = <span class="cstat-no" title="statement not covered" >hash.split('?')</span>
+<span class="cstat-no" title="statement not covered" >			search = search[1].split('&amp;')</span>
+<span class="cstat-no" title="statement not covered" >			search.forEach(<span class="fstat-no" title="function not covered" >function(</span>v,i){</span>
+				let s = <span class="cstat-no" title="statement not covered" >v.split('=')</span>
+<span class="cstat-no" title="statement not covered" >				if(s[1]!=='undefined' &amp;&amp; s[1]!=='null' &amp;&amp; s[1]!==''){</span>
+<span class="cstat-no" title="statement not covered" >					stack[s[0]] = s[1]</span>
+				}
+			})
+		}
+<span class="cstat-no" title="statement not covered" >		if(id){ <span class="cstat-no" title="statement not covered" >return stack[id] }</span></span>
+<span class="cstat-no" title="statement not covered" >		return stack</span>
+	},
+	// 获取地址栏与本地缓存的 token
+	getToken(obj){
+		let token = <span class="cstat-no" title="statement not covered" >this.getQuery('token');</span>
+		let user = <span class="cstat-no" title="statement not covered" >this.getUser();</span>
+		let rs = <span class="cstat-no" title="statement not covered" >null</span>
+		
+<span class="cstat-no" title="statement not covered" >		if(token){</span>
+<span class="cstat-no" title="statement not covered" >			rs = token</span>
+		}else <span class="cstat-no" title="statement not covered" >if(user.token){</span>
+<span class="cstat-no" title="statement not covered" >			rs = user.token</span>
+		}
+<span class="cstat-no" title="statement not covered" >		return rs</span>
+	},
+	// 获取用户信息
+	getUser(){
+		const user = <span class="cstat-no" title="statement not covered" >Storage.get('user');</span>
+<span class="cstat-no" title="statement not covered" >		if(this.hasObject(user)){</span>
+<span class="cstat-no" title="statement not covered" >			return user;</span>
+		}else{
+<span class="cstat-no" title="statement not covered" >			return {}</span>
+		}
+	},
+	// 设置浏览器 title
+	setTitle(text){ <span class="cstat-no" title="statement not covered" >window.document.title = text },</span>
+	// ======================================================================== 登录后跳转
+	loginTo(flag){
+<span class="cstat-no" title="statement not covered" >		if(flag){</span>
+			let page = <span class="cstat-no" title="statement not covered" >this.local('loginToPage');</span>
+<span class="cstat-no" title="statement not covered" >			if(page){</span>
+<span class="cstat-no" title="statement not covered" >				return decodeURIComponent(page).replace('#','')</span>
+			}else{
+<span class="cstat-no" title="statement not covered" >				return false</span>
+			}
+		}else{
+<span class="cstat-no" title="statement not covered" >			this.local('loginToPage',encodeURIComponent(window.location.hash))</span>
+		}
+	}
+}</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Fri May 01 2020 02:59:20 GMT+0800 (GMT+08:00)
+</div>
+</div>
+<script src="..\..\prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="..\..\sorter.js"></script>
+</body>
+</html>

@@ -1,0 +1,447 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for src/components/associate.vue</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="..\..\prettify.css" />
+    <link rel="stylesheet" href="..\..\base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(..\..\sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="..\..\index.html">All files</a> / <a href="index.html">src/components</a> associate.vue
+    </h1>
+    <div class='clearfix'>
+    </div>
+  </div>
+  <div class='status-line low'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">&lt;template&gt;  
+	&lt;div ref='box' style='position:relative;padding:5px;background:#fff;border-radius:5px;border: 1px solid #DCDFE6;height: 100px;margin-bottom: 24px;'&gt;
+		&lt;textarea v-if="mode==='textarea'" ref='area' style='width:100%;height:100%;border:0;background:none;line-height:24px' :value='value' @input='onInput($event)' @keydown='onKeyDown($event)' /&gt;
+		&lt;input v-else ref='area' style='width:100%;height:100%;border:0;background:none;line-height:24px' :value='value' @input='onInput($event)' @keydown='onKeyDown($event)' /&gt;
+		
+		&lt;dl ref='slide' @click.stop v-show='show' :style="{top:top + 'px',maxHeight:28*5 + 'px',left:mode==='textarea'?'10px':0,right:mode==='textarea'?'10px':0}" style='overflow-y:auto;position:absolute;left:10px;right:10px;box-shadow:2px 2px 5px #ddd;border-radius:5px;background:#fff'&gt;
+			&lt;dd 
+				v-for='(v,i) in data' 
+				:key='i' 
+				@click='onSelect(v.sugg_content)' 
+				style='height:28px;line-height:28px;padding:0 5px;cursor:pointer;' 
+				:style="{borderTop:i===0?0:'1px solid #eee',background:index===i?'#37a6da':'none',color:index===i?'#fff':'#333'}"
+			&gt;{{v.sugg_content}}&lt;/dd&gt;
+		&lt;/dl&gt;
+		&lt;div class='info' v-if="mode==='textarea'"&gt;(使用向下" ↓ "箭头自动搜索)&lt;/div&gt;  
+	&lt;/div&gt;  
+&lt;/template&gt;
+&nbsp;
+&lt;script&gt;
+<span class="cstat-no" title="statement not covered" >	import $http from '@com/http'</span>
+	var clear
+	export default {
+		props:{
+			styles: String, 		// 外部样式
+			id: String, 			// kind_id
+			type:{ 					// api
+				type:Number,
+				default:0
+			},
+			value:String,
+			mode:{
+				type:String,
+				default:'textarea'
+			}
+		},
+<span class="fstat-no" title="function not covered" >		data(){</span>
+<span class="cstat-no" title="statement not covered" >			return {</span>
+				data: [],
+				show: false,
+				top: 20,
+				index:0,
+				api:'report-result-suggestion/index'
+			}
+		},
+<span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >		mounted(){</span></span>
+<span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >			document.querySelector('body').addEventListener('click',e=&gt;{</span></span>
+<span class="cstat-no" title="statement not covered" >				this.show = false</span>
+			})
+			// 上下移动选择联想
+<span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >			document.querySelector('body').addEventListener('keydown',e=&gt;{</span></span>
+<span class="cstat-no" title="statement not covered" >				if(this.show){</span>
+<span class="cstat-no" title="statement not covered" >					if(e.keyCode === 40 &amp;&amp; this.index &lt; this.data.length-1){</span>
+<span class="cstat-no" title="statement not covered" >						this.index ++</span>
+<span class="cstat-no" title="statement not covered" >					}else if(e.keyCode === 38 &amp;&amp; this.index&gt;0){</span>
+<span class="cstat-no" title="statement not covered" >						this.index --</span>
+<span class="cstat-no" title="statement not covered" >					}else if(e.keyCode === 13){</span>
+<span class="cstat-no" title="statement not covered" >						this.onSelect(this.data[this.index].sugg_content)</span>
+					}
+				}
+			})
+<span class="cstat-no" title="statement not covered" >			if(this.mode === 'textarea'){</span>
+<span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >				this.$refs.area.addEventListener('click',e=&gt;{</span></span>
+<span class="cstat-no" title="statement not covered" >					this.top = e.pageY - this.$refs.box.offset().top + 10</span>
+				})
+			}else{
+<span class="cstat-no" title="statement not covered" >				this.top = this.$refs.box.clientHeight + 1</span>
+			}
+		},
+		methods:{
+<span class="fstat-no" title="function not covered" >			onInput(e){</span>
+<span class="cstat-no" title="statement not covered" >				this.$emit('input', e.target.value)</span>
+			},
+			// 按向下箭头执行
+<span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >			onKeyDown(e){</span></span>
+<span class="cstat-no" title="statement not covered" >				if(this.show) return false</span>
+<span class="cstat-no" title="statement not covered" >				if(e.keyCode === 40){</span>
+<span class="cstat-no" title="statement not covered" >					this.index = 0</span>
+<span class="cstat-no" title="statement not covered" >					const len = this.value.length</span>
+<span class="cstat-no" title="statement not covered" >					const param = { kind_id:this.id }</span>
+<span class="cstat-no" title="statement not covered" >					let search = this.value.substring(len-3,len)</span>
+					
+<span class="cstat-no" title="statement not covered" >					if(search.indexOf('\n') &gt;= 0){ search = '' }</span>
+					
+<span class="cstat-no" title="statement not covered" >					if(this.type === 0){ 	// 建议与解释</span>
+<span class="cstat-no" title="statement not covered" >						this.api = 'report-result-suggestion/index'</span>
+<span class="cstat-no" title="statement not covered" >						param.sugg_content = search</span>
+<span class="cstat-no" title="statement not covered" >					} else if (this.type === 1) { // 报告</span>
+<span class="cstat-no" title="statement not covered" >						this.api = 'report-result-info/index' </span>
+<span class="cstat-no" title="statement not covered" >						param.result_content = search</span>
+<span class="cstat-no" title="statement not covered" >					} else if(this.type === 2){ // </span>
+						
+					}
+					// ajax
+<span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >					$http.pull(this,this.api,{</span></span>
+						param: param,
+						dataName:null
+					}).then(data=&gt;{
+<span class="cstat-no" title="statement not covered" >						this.data = data.items || []</span>
+<span class="cstat-no" title="statement not covered" >						if(this.data.length &gt; 0){</span>
+<span class="cstat-no" title="statement not covered" >							this.show = true</span>
+<span class="cstat-no" title="statement not covered" >							this.$refs.area.blur()</span>
+						}
+					})
+<span class="cstat-no" title="statement not covered" >				}else if(e.keyCode === 38){</span>
+				
+				}else{
+<span class="cstat-no" title="statement not covered" >					this.show = false</span>
+				}
+			},
+			// 选择文本并插入
+<span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >			onSelect(v){</span></span>
+<span class="cstat-no" title="statement not covered" >				this.show = false</span>
+<span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >				setTimeout(()=&gt;{</span></span>
+<span class="cstat-no" title="statement not covered" >					if(this.$refs.area){</span>
+<span class="cstat-no" title="statement not covered" >						this.$refs.area.focus()</span>
+					}
+					
+<span class="cstat-no" title="statement not covered" >					if(this.mode === 'textarea'){</span>
+<span class="cstat-no" title="statement not covered" >						document.execCommand('insertHtml',false,v)</span>
+					}else{
+<span class="cstat-no" title="statement not covered" >						this.$refs.area.value = v</span>
+					}
+				})
+			}
+		}
+	}
+&lt;/script&gt;
+&lt;style scoped&gt;
+.info{
+	position: absolute;
+	bottom: -24px;
+	line-height: 24px;
+	color: #ccc
+}
+&lt;/style&gt;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Fri May 01 2020 02:59:20 GMT+0800 (GMT+08:00)
+</div>
+</div>
+<script src="..\..\prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="..\..\sorter.js"></script>
+</body>
+</html>
