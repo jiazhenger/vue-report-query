@@ -4,7 +4,7 @@
 		<el-tabs v-model='activeName' style='padding:0 10px'>
 			<el-tab-pane label='报告单查询' name='0'></el-tab-pane>
             <!-- search-from -->
-            <DateSearch ref='tab0' v-if='active0'/>
+            <DateSearch/>
 	  	</el-tabs>
 	</Content>
 </template>
@@ -18,15 +18,12 @@
      // ================================================================ class
 	export default {
 		components:{
-			Content		: () => import('@cpx/content'),
-			DateSearch	: ()=>import('@tp/date-search'),
+			Content		: ()=>import('@cpx/content'),
+			DateSearch	: ()=>import('@tp/date-search')
 		},
 		data(){
 			return {
-				activeName:'0',
-		        active0:true,
-		        active1:false,
-		        active2:false
+				activeName:'0'
 			}
 		},
 		methods:{
