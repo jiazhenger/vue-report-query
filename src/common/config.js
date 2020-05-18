@@ -3,9 +3,9 @@ const env = process.env.NODE_ENV === 'development';	// 是否为开发环境
 
 const exist = str => window.location.host.indexOf(str) >= 0
 
-let api = 'http://t.ubzyw.com/tpc/api/'		// 正式访问 api
-let apt = 'http://mapi.norsonmed.com/api/'						// 测试访问 api
-let apr = 'http://t.ubzyw.com/'									// 预发访问 api
+let api = 'http://t.ubzyw.com/tpc/api/'		        // 正式访问 api
+let apt = 'http://wx.ngrok.nicol.wang/org/'		    // 测试访问 api
+let apr = 'http://t.ubzyw.com/'						// 预发访问 api
 
 if(env){ // 开发环境
 	api = apt

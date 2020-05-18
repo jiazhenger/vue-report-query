@@ -10,11 +10,8 @@
 				</hgroup>
 				<!-- form -->
 				<el-form class='login-form' ref='form' :model='model' :rules='rules' @submit.prevent='submit' style='width:300px;min-height:225px'>
-					<FormItem prop='company'>
-						<Select ref='select' v-model='model.company' class='w login-select' p='选择分公司' :disabled='submitLoading' :size='size' :data='data' labelStr='company_name' valueStr='uuid'/>
-					</FormItem>
-					<FormItem class='mt20' prop='phone'>
-						<Input v-model='model.phone' class='w' prefix-icon='el-icon-user' p='账号/工号/手机号/邮箱' :disabled='submitLoading' :size='size'/>
+					<FormItem class='mt20' prop='account'>
+						<Input v-model='model.account' class='w' prefix-icon='el-icon-user' p='账号' :disabled='submitLoading' :size='size'/>
 					</FormItem>
 					<FormItem class='mt20' prop='password'>
 						<Input v-model='model.password' class='w' prefix-icon='el-icon-goods' :show-password='true' type='password' p='密码' :disabled='submitLoading' :size='size'/>
@@ -66,12 +63,11 @@
 			return {
 				ImgBg,ImgLogo,
 				size:'small',
-				model:{  },
+				model:{ account: '15882463718', password:'123456' },
 				data:[],
 				submitLoading:false,
 				rules:{
-					company:[{ required:true, message:'请选择分公司'  }],
-					phone: [
+					account: [
 			            { required: true, message: '请输入手机号', trigger: ['blur','change'] },
 			            { pattern:$fn.regPhone, message: '请输入正确的手机号', trigger: ['blur','change'] }
 			        ],
@@ -84,39 +80,31 @@
 			}
 		},
 		mounted(){
-			// 获取公司数据
-			$http.pull(this,'company/select',{ noToken:true, loading:true }).then(data=>{
-				this.remember()
-			})
-			// 获取验证码
-//			$http.pull(this,'index/captcha',{ dataName:'captchaData', noToken:true })
+
 		},
 		methods:{
 			submit(){
 				this.$refs.form.validate( valid => {
 					if(valid){
-						$http.submit(this,'auth/login',{
+						$http.submit(this,'user/login',{
 							param: this.model,
 							noToken: true,
 							loading: false
 						}).then(data=>{
 							if($fn.hasObject(data)){
 								$fn.local('user',data)
-								$http.submit(this,'employee/currentuser',{dataName:null}).then(rs=>{
-                                    $msg.then(f => f('登录成功') )
-									if( $fn.hasObject(rs)){ $fn.local('user',{...data,...rs}) }
+								$msg.then(f => f('登录成功') )
 
-									// 记住密码
-									if(this.checked){
-										const model = JSON.parse(JSON.stringify(this.model))
-										for(var i in model){ model[i] = Encrypt.encode(model[i]) }
-										$fn.localPer('remember',model)
-									}else{
-										$fn.removePer('remember')
-									}
+								// 记住密码
+								if(this.checked){
+									const model = JSON.parse(JSON.stringify(this.model))
+									for(var i in model){ model[i] = Encrypt.encode(model[i]) }
+									$fn.localPer('remember',model)
+								}else{
+									$fn.removePer('remember')
+								}
 
-									this.$router.replace('/')
-								})
+								this.$router.replace('/')
 							}
 						})
 					}else{
