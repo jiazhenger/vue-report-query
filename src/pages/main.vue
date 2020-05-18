@@ -4,7 +4,7 @@
 			<!-- header -->
 			<header style='height:60px' class='bcf plr20 fxm'>
 				<!-- logo -->
-				<div class='fxm mr30' style='height:56px;'>
+				<div class='fxm mr30 cp' style='height:56px;' @click="$router.push('/')">
 					<Img :src='ImgLogo' height='40px'/>
 				</div>
 				<!-- menu -->
