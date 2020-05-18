@@ -49,13 +49,13 @@
 	export default {
 		components:{
 			Content		: () => import('@cpx/content'),
-			Form		: ()=>import('@cpt/ui/form'),
-			FormItem	: ()=>import('@cpt/ui/form-item'),
-			Input		: ()=>import('@cpt/ui/input'),
-			Select		: ()=>import('@cpt/ui/select'),
-			Button		: ()=>import('@cpt/ui/button'),
+			Form		: ()=>import('@eu/form'),
+			FormItem	: ()=>import('@eu/form-item'),
+			Input		: ()=>import('@eu/input'),
+			Select		: ()=>import('@eu/select'),
+			Button		: ()=>import('@eu/button'),
 			SearchBox	: ()=>import('@tp/search-box'),
-			DatePicker 	: ()=>import('@cpt/ui/date-picker'),
+			DatePicker 	: ()=>import('@eu/date-picker'),
 		},
 		data(){
 			return {

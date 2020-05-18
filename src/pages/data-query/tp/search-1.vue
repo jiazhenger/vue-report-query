@@ -16,10 +16,10 @@
 <script>
 	export default {
 		components:{
-			FormItem	: ()=>import('@cpt/ui/form-item'),
-			DatePicker 	: ()=>import('@cpt/ui/date-picker'),
-			Input 	: ()=>import('@cpt/ui/input'),
-			Button		: ()=>import('@cpt/ui/button'),
+			FormItem	: ()=>import('@eu/form-item'),
+			DatePicker 	: ()=>import('@eu/date-picker'),
+			Input 	: ()=>import('@eu/input'),
+			Button		: ()=>import('@eu/button'),
 			SearchBox	: ()=>import('@tp/search-box'),
 		},
 		props:{

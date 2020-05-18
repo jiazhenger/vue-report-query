@@ -34,7 +34,7 @@
     Vue.use(Menu)
     Vue.use(MenuItem)
 	// ================================================================ 加载图片
-	import ImgLogo from '@images/main/logo.png'
+	import ImgLogo from '@img/main/logo.png'
 	// ================================================================ 自定义模板
 	Vue.component('NavItem', {
         template: `

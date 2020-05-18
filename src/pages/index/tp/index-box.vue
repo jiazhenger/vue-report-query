@@ -18,7 +18,7 @@
 	// ================================================================  class
 	export default {
 		components:{
-			Button: () => import('@cpt/ui/button')
+			Button: () => import('@eu/button')
 		},
 		props:{ 
 			ico:String, 

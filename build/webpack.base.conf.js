@@ -31,11 +31,12 @@ module.exports = {
       '@pages': resolve('src/pages'),
       '@assets': resolve('src/assets'),
       '@css': resolve('src/assets/css'),
-      '@images': resolve('src/assets/images'),
+      '@img': resolve('src/assets/images'),
       '@js': resolve('src/assets/js'),
       '@pls': resolve('src/plugins'),
       '@cpt': resolve('src/components'),
       '@tp': resolve('src/components/template'),
+      '@eu': resolve('src/components/element-ui'),
       '@cpx': resolve('src/components-x'),
       '@vuex': resolve('src/vuex'),
       '@com': resolve('src/common')

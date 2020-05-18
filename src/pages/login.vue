@@ -44,22 +44,22 @@
 
 <script>
     // ================================================================ plugins
-    const $msg = import('@pls/msg')
+    const $msg = import('@eu/js/msg')
 	// ================================================================ element-ui
 	import Encrypt from '@com/encrypt'
 	import { Form } from 'element-ui'
 	Vue.use(Form)
 	// ================================================================ 加载图片
-	import ImgBg from '@images/login/bg.jpg'
-	import ImgLogo from '@images/login/logo.png'
+	import ImgBg from '@img/login/bg.jpg'
+	import ImgLogo from '@img/login/logo.png'
 	// ================================================================ class
 	export default {
 		components:{
-			Select: 	() => import('@cpt/ui/select'),
-			FormItem: 	() => import('@cpt/ui/form-item'),
-			Input: 		() => import('@cpt/ui/input'),
-			Button: 	() => import('@cpt/ui/button'),
-			Checkbox: 	() => import('@cpt/ui/checkbox'),
+			Select: 	() => import('@eu/select'),
+			FormItem: 	() => import('@eu/form-item'),
+			Input: 		() => import('@eu/input'),
+			Button: 	() => import('@eu/button'),
+			Checkbox: 	() => import('@eu/checkbox'),
 			Img: 		() => import('@cpx/img'),
 		},
 		data(){
