@@ -9,7 +9,7 @@
 					<h6 class='f16 g9 mt15'>致力于做民众身边的健康管理专家</h6>
 				</hgroup>
 				<!-- form -->
-				<el-form class='login-form' ref='form' :model='model' :rules='rules' @submit.prevent='submit' style='width:300px;min-height:225px'>
+				<el-form class='login-form' ref='form' :model='model' :rules='rules' @submit.prevent.stop='submit' style='width:300px;min-height:225px'>
 					<FormItem class='mt20' prop='account'>
 						<Input v-model='model.account' class='w' prefix-icon='el-icon-user' p='账号' :disabled='submitLoading' :size='size'/>
 					</FormItem>

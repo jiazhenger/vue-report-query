@@ -13,12 +13,12 @@
         <slot></slot>
 		<template v-for	= '(v,i) in col'>
 			<Col
-                :scope   = 'Boolean(v.slot)'
 				:prop	= 'v.prop'
 				:label	= 'v.label'
 				:width	= 'v.width'
 				:type 	= 'v.prop'
 				:align  = 'v.align'
+                :fixed  = 'v.fixed'
 			/>
 		</template>
 	</Table>

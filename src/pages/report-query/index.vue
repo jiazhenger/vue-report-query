@@ -7,20 +7,20 @@
 		<!-- search-from -->
 		<SearchBox>
 			<el-form ref='search' :inline='true' :model='model' @submit='submit'>
-				<FormItem label='条码号' prop='a'>
-					<Input v-model='model.a' p='请输入条码号' @clear='submit' :disabled='pagingLoading'/>
+				<FormItem label='条码号' prop='spec_code'>
+					<Input v-model='model.spec_code' p='请输入条码号' @clear='submit' :disabled='pagingLoading'/>
 				</FormItem>
-				<FormItem class='auto' label='送检日期' prop='time'>
-					<DatePicker ref='d' v-model='model.time' @clear='submit' @change='submit' :disabled='pagingLoading'/>
+				<FormItem class='auto' label='送检日期' prop='date'>
+					<DatePicker ref='d' v-model='model.date' @clear='submit' @change='submit' :disabled='pagingLoading'/>
 				</FormItem>
-				<FormItem label='病人姓名' prop='b'>
-					<Input v-model='model.b' p='请输入病人姓名' @clear='submit' :disabled='pagingLoading'/>
+				<FormItem label='病人姓名' prop='patient_name'>
+					<Input v-model='model.patient_name' p='请输入病人姓名' @clear='submit' :disabled='pagingLoading'/>
 				</FormItem>
-				<FormItem label='检测项目' prop='c'>
-					<Input v-model='model.c' p='请输入检测项目' @clear='submit' :disabled='pagingLoading'/>
+				<FormItem label='检测项目' prop='project_name'>
+					<Input v-model='model.project_name' p='请输入检测项目' @clear='submit' :disabled='pagingLoading'/>
 				</FormItem>
-				<FormItem label='样本状态' prop='d'>
-					<Select v-model='model.d' p='请输入样本状态' @clear='submit' :disabled='pagingLoading' :data='[]'/>
+				<FormItem label='样本状态' prop='check_status'>
+					<Select v-model='model.check_status' p='请输入样本状态' @clear='submit' :disabled='pagingLoading' :data='[]'/>
 				</FormItem>
 				<FormItem class='auto'>
 					<Button label='查询' native-type='submit'  @click='submit($event)' :loading='pagingLoading'/>
@@ -32,10 +32,10 @@
 		</SearchBox>
 		<!-- table -->
 	  	<div class='fx' style='margin:10px'>
-	  		<div class='ex'>
+	  		<div :style="{width:fn.hasArray(data2)?'70%':'100%'}">
 	  			<Table ref='list' :data='data' :col='col' @select='onSelect' :pag='pag' :loading='pagingLoading'/>
 	  		</div>
-	  		<div class='ml10' style='width:500px'><Table :data='data2' :col='col' @select='onSelect' :loading='pagingLoading'/></div>
+	  		<div v-if='fn.hasArray(data2)' class='ml10' style='width:calc(30% - 10px)'><Table :data='data2' :col='col2'/></div>
 	  	</div>
 	</Content>
 </template>
@@ -49,7 +49,7 @@
      // ================================================================ class
 	export default {
 		components:{
-			Content		: () => import('@cpx/content'),
+			Content		: ()=>import('@cpx/content'),
             SearchBox	: ()=>import('@tp/search-box'),
 			Form		: ()=>import('@eu/form'),
 			FormItem	: ()=>import('@eu/form-item'),
@@ -61,6 +61,7 @@
 		},
 		data(){
 			return {
+                fn:$fn,
 				activeName:'0',
 				model:{},
 				data:[{
@@ -80,24 +81,34 @@
 				pagingLoading:false,
 				col:[
                     { prop:'selection' , width:'40px', fixed:true, align:'center' },
-		        	{ prop:'spec_code', 	label:'条码号' },
+		        	{ prop:'spec_code', 	label:'条码号', width:'120px' },
 		        	{ prop:'patient_name', 	label:'病人姓名'},
 		        	{ prop:'sex', label:'性别', align:'center' },
                     { prop:'age', label:'年龄', align:'center' },
-                    { prop:'outpatient', label:'门诊/住院号' },
+                    { prop:'outpatient', label:'门诊/住院号', width:'100px' },
                     { prop:'department_name', label:'科室' },
                     { prop:'doctor', label:'送检医生' },
                     { prop:'project_name', label:'项目名称' },
                     { prop:'check_status', label:'检测状态' },
-                    { prop:'check_time', label:'检测时间' },
-                    { prop:'report_time', label:'报告时间' },
-                    { prop:'print_time', label:'打印时间（首次）' },
+                    { prop:'check_time', label:'检测时间', width:'140px' },
+                    { prop:'report_time', label:'报告时间', width:'140px' },
+                    { prop:'print_time', label:'打印时间（首次）', width:'140px' },
                     { prop:'print_times', label:'打印次数' }
 		        ],
 		        col2:[
-		        	{ prop:'item_name', 	label:'名称' },
-		        	{ prop:'price_code', 	label:'物价代码'},
-		        	{ prop:'price', 		label:'参考价' }
+		        	{ prop:'spec_code', 	label:'条码号', width:'120px' },
+		        	{ prop:'patient_name', 	label:'病人姓名'},
+		        	{ prop:'sex', label:'性别', align:'center' },
+		        	{ prop:'age', label:'年龄', align:'center' },
+		        	{ prop:'outpatient', label:'门诊/住院号', width:'100px' },
+		        	{ prop:'department_name', label:'科室' },
+		        	{ prop:'doctor', label:'送检医生' },
+		        	{ prop:'project_name', label:'项目名称' },
+		        	{ prop:'check_status', label:'检测状态' },
+		        	{ prop:'check_time', label:'检测时间', width:'140px' },
+		        	{ prop:'report_time', label:'报告时间', width:'140px' },
+		        	{ prop:'print_time', label:'打印时间（首次）', width:'140px' },
+		        	{ prop:'print_times', label:'打印次数' }
 		        ],
 			}
 		},
@@ -106,22 +117,23 @@
 		},
 		methods:{
 			// ajax
-			fetch(current){ $http.paging(this,'report/lists',{param:{current,...$fn.getValid(this.model)}}) },
+			fetch(current,param){
+                const model = $fn.getValid(this.model)
+                $http.paging(this,'report/lists',{param:{current,...model}})
+            },
 			submit(){
-				this.fetch()
+				this.fetch(1)
 			},
 			reset(){
 				this.$refs.search.resetFields()
 				this.$refs.d.reset()
+                this.data2 = []
 			},
 			onSelect(v){
 				if(v.length > 0){
 					this.data2 = Array.from(new Set([...this.data2,...v]))
 				}
-			},
-            open(scope){
-                console.log(scope)
-            }
+			}
 		}
 	}
 </script>

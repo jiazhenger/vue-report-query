@@ -2,7 +2,7 @@
 	<Content isPage>
         <div style='width:350px;margin:0 auto;padding-top:100px'>
             <h2 class='tc b f16 mb30'>修改密码</h2>
-            <el-form ref='form' :model='model' :rules='rules' label-width='80px' @submit.prevent='submit'>
+            <el-form ref='form' :model='model' :rules='rules' label-width='80px' @submit.prevent.stop='submit'>
                 <FormItem label='旧密码' prop='password'>
                     <Input v-model='model.password' p='请输入旧密码' :disabled='submitLoading' size='small'/>
                 </FormItem>

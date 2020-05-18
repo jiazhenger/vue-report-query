@@ -340,6 +340,7 @@ const paging = (_this,api,option)=>{
 				_this[opt.dataName] = result
 				resolve(result)
 			}
+            document.querySelector('#page').scrollTop = 0
 			opt.callback && opt.callback(data);
 		})
 	})

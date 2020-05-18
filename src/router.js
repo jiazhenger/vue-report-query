@@ -17,6 +17,7 @@ const routes = [
 			/* 表单 */
 			{ path:'/main/report-query', component: loadAsync('report-query') },
 			{ path:'/main/data-query', component: loadAsync('data-query') },
+            { path:'/main/sample-trace', component: loadAsync('sample-trace') },
 			/* 修改密码 */
 			{ path:'/main/change-passwords', component: loadAsync('change-passwords') }
 		]

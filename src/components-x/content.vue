@@ -1,5 +1,5 @@
 <template>  
-	<section class='abs_full scrollbar bcf' :class='{oys:scrollY,oxs:scrollX, oxys:scrollXY,r5px:isPage}'>
+	<section :id="isPage?'page':'null'" class='abs_full scrollbar bcf' :class='{oys:scrollY,oxs:scrollX, oxys:scrollXY,r5px:isPage}'>
 		<div :style='{minWidth:isPage?mw:0}' :class='contentClass'>
 			<slot></slot>
 		</div>
