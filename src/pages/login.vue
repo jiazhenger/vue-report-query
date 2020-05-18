@@ -40,12 +40,12 @@
 </template>
 
 <script>
-    // ================================================================ plugins
-    const $msg = import('@eu/js/msg')
 	// ================================================================ element-ui
 	import Encrypt from '@com/encrypt'
 	import { Form } from 'element-ui'
 	Vue.use(Form)
+    // ================================================================ 二次封装 element-ui
+    const $msg = import('@eu/js/msg')
 	// ================================================================ 加载图片
 	import ImgBg from '@img/login/bg.jpg'
 	import ImgLogo from '@img/login/logo.png'

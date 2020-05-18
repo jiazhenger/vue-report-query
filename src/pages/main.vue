@@ -14,7 +14,7 @@
 					</template>
 				</el-menu>
 				<div class='ex'></div>
-				<User />
+				<User :data='user' />
 				<menu class='fx ml20'>
 					<NavItem title='修改密码' ico='el-icon-edit' class='mr20 nowrap hover' @click="$router.push('/main/change-passwords')" />
 					<NavItem title='退出' ico='el-icon-switch-button' class='nowrap hover-c' @click='logout' />
@@ -33,6 +33,9 @@
     import { Menu, MenuItem } from 'element-ui'
     Vue.use(Menu)
     Vue.use(MenuItem)
+    // ================================================================ 二次封装 element-ui
+    const $msg = import('@eu/js/msg')
+    const $confirm = import('@eu/js/confirm')
 	// ================================================================ 加载图片
 	import ImgLogo from '@img/main/logo.png'
 	// ================================================================ 自定义模板
@@ -61,7 +64,8 @@
 					{ title:'数据查询', 		path:'/main/data-query' },
 					{ title:'样本追踪', 		path:'/main/sample-trace' },
 				],
-				activeIndex: '0'
+				activeIndex: '0',
+                user:{}
 			}
 		},
 		mounted(){
@@ -70,6 +74,7 @@
 			if($fn.hasArray(arr)){
 				this.activeIndex = arr[0].path
 			}
+            $http.pull(this,'user/info', { dataName:'user'})
 		},
 		methods:{
 			select(v){
@@ -77,16 +82,18 @@
 			},
 			// 退出登录
 			logout(){
-				this.$confirm('确认退出登录?', '提示', {
-		        	confirmButtonText: '退出登录',
-		       		cancelButtonText: '取消',
-		        	type: 'warning'
-		        }).then(data=>{
-		        	$http.submit(this,'index/logout',{dataName:null,loading:true,replace:'/login',loadingText:'退出登录中'}).then(data=>{
-		        		$fn.remove()
-		        		this.$msg('您已退出登录')
-		        	})
-		        }).catch(action=>{})
+                $confirm.then(f=>{
+                    f('确认退出登录?', '提示', {
+                    	confirmButtonText: '退出登录',
+                    	cancelButtonText: '取消',
+                    	type: 'warning'
+                    }).then(data=>{
+                    	$http.submit(this,'user/logout',{dataName:null,loading:true,replace:'/login',loadingText:'退出登录中'}).then(data=>{
+                    		$fn.remove()
+                    		$msg.then(f=>f('您已退出登录'))
+                    	})
+                    }).catch(action=>{})
+                })
 			}
 		}
 	}

@@ -1,7 +1,7 @@
-<template>  
+<template>
 	<Table
 		ref 				= 'table'
-		:data				= 'data' 
+		:data				= 'data'
 		:emptyText			= 'emptyText'
 		:size 				= 'size'
 		:loading 			= 'loading'
@@ -10,16 +10,17 @@
 		:pag 				= 'pag'
 		@change 			= 'onChange'
 	>
+        <slot></slot>
 		<template v-for	= '(v,i) in col'>
 			<Col
-				:prop	= 'v.prop' 
+                :scope   = 'Boolean(v.slot)'
+				:prop	= 'v.prop'
 				:label	= 'v.label'
 				:width	= 'v.width'
 				:type 	= 'v.prop'
 				:align  = 'v.align'
 			/>
 		</template>
-		<slot></slot>
 	</Table>
 </template>
 
@@ -27,8 +28,8 @@
 	// ================================================================  class
 	export default {
 		components:{
-			Table: ()=>import('./ui/table'),
-			Col: ()=>import('./ui/table-col'),
+			Table: ()=>import('@eu/table'),
+			Col: ()=>import('@eu/table-col'),
 		},
 		props:{
 			label		:String,

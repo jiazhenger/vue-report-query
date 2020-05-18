@@ -1,8 +1,9 @@
-<template>  
+<template>
 	<Loading :loading='loading'>
-		<el-table 
+		<el-table
+            class                       = 'nowrap-table'
 			ref							= 'table'
-			:data						= 'data' 
+			:data						= 'data'
 			:empty-text					= 'emptyText'
 			:size 						= 'size'
 			:height 					= 'height'
@@ -11,8 +12,11 @@
 			element-loading-text 		= '数据加载中'
 			element-loading-background	= 'rgba(0, 0, 0, 0.1)'
 			:style						= '{minHeight:mh}'
+            :border                     = 'border'
 		>
-			<slot></slot>
+            <template slot-scope='scope'>
+                <slot :scope='scope'></slot>
+            </template>
 		</el-table>
 		<template v-if='fn.hasObject(pag)'><Pagination :pag='pag' @change='onChange' /></template>
 	</Loading>
@@ -27,7 +31,7 @@
 	export default {
 		components:{
 			Loading: ()=>import('@cpx/loading-wraper'),
-			Pagination: ()=>import('@cpt/ui/pagination'),
+			Pagination: ()=>import('@eu/pagination'),
 		},
 		props:{
 			size		: { type:String, default:'mini' },
@@ -37,6 +41,7 @@
 			height		: Number,
 			mh			: { type:String, default:'90px' },
 			emptyText	: { type:String, default:'暂无数据' },
+            border		: { type:Boolean, default:true },
 		},
 		data(){
 			return {

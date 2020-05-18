@@ -79,8 +79,6 @@ const coreRequest = (url, param, action, defined) => {
 		api		: api
 	})
 
-    console.log(body)
-
 	$fn.isFunction(UD.onStart) && UD.onStart()		// 一开始就调用
 
 	if(action === 'get'){
@@ -293,11 +291,11 @@ const paging = (_this,api,option)=>{
 
 	Object.assign(opt,option || {});
 
-	const { page, pageSize } = opt.param || {}
+	const { current, pageSize } = opt.param || {}
 	const param = {
-		page: page || 1, 			// 当前页
-		limit: pageSize || 10,		// 每页显示多少条数据
-		...opt.param
+        ...opt.param,
+		page        : current || 1, 			    // 当前页
+		per_page    : pageSize || 19,		// 每页显示多少条数据
 	}
 	delete param.pageSize
 	delete param.total
@@ -320,26 +318,27 @@ const paging = (_this,api,option)=>{
 
 	return new Promise((resolve)=>{
 		pull(_this,api,{
-			onStart:()=>{ opt.onStart && opt.onStart(true) },
-			onEnd:()=>{ opt.onStart && opt.onEnd(true) },
-			onError:opt.onError,
-			loading:opt.loading,
-			param: param ,
-			pullLoading:opt.pagingLoading,
-			resetData:true,
-			dataName: null
+			onStart     : ()=>{ opt.onStart && opt.onStart(true) },
+			onEnd       : ()=>{ opt.onStart && opt.onEnd(true) },
+			onError     : opt.onError,
+			loading     : opt.loading,
+			param       : param ,
+			pullLoading : opt.pagingLoading,
+			resetData   : true,
+			dataName    : null
 		}).then(data=>{
+            const result = data.data
 			_this[opt.pag] = {
 				..._this[opt.pag],
-				current		: +data.current, 			// 当前页码
-				total		: +data.total_items,			// 总共多少条数据
-				totalPage	: +data.total_pages,			// 总共多少页
-				pageSize	: +data.limit,				// 每页显示多少条数据
+				current		: +data.current_page, 		// 当前页码
+				total		: +data.total,		        // 总共多少条数据
+				totalPage	: +data.total_pages,		// 总共多少页
+				pageSize	: +data.per_page,			// 每页显示多少条数据
 			}
 			if($fn.isValid(opt.dataName)){
 //				const result = $fn.addKey(data, format);
-				_this[opt.dataName] = data.items
-				resolve(data.items)
+				_this[opt.dataName] = result
+				resolve(result)
 			}
 			opt.callback && opt.callback(data);
 		})
