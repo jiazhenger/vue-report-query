@@ -56,17 +56,15 @@ export default {
 		SessionStorage.remove(sname);
 	},
 	localPer(name,data){
-		let sname =  name || 'remember';
 		if(this.isValid(data)){
-			LocalStorage.set(sname,data);
+			LocalStorage.set(name,data);
 		}else {
-			let gname = LocalStorage.get(sname);
+			let gname = LocalStorage.get(name);
 			return gname;
 		}
 	},
 	removePer(name){
-		let sname =  name || 'user';
-		LocalStorage.remove(sname);
+		LocalStorage.remove(name);
 	},
 	// 绑定值
 	val(v){return this.isValid(v) ? v : '--'},

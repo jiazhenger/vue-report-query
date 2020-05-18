@@ -10,10 +10,10 @@ const logMsg = (msg,content)=>{ Config.env && console.log(msg,content) }
 // 配置头信息
 const config = (opt)=>{
 	let contentType = opt.upload ? 'multipart/form-data' : 'application/x-www-form-urlencoded';
-	let header = opt.noToken ? 
-		{ 'Content-Type': contentType } : 
-		{ 
-			'Content-Type': contentType, 
+	let header = opt.noToken ?
+		{ 'Content-Type': contentType } :
+		{
+			'Content-Type': contentType,
 			'Authorization':$fn.getToken()
 		}
 	return {
@@ -64,7 +64,7 @@ const setType = (_this,dataName) => {
  * 		error:()=>{}				// 接口请求不通时调用
  * 		closeToast:true				// 数据请求成功但不符合规则时，屏蔽默认提示，可在 then 中自定义提示
  * }
- * 
+ *
  * */
 const coreRequest = (url, param, action, defined) => {
 	let UD = defined || {}
@@ -78,27 +78,29 @@ const coreRequest = (url, param, action, defined) => {
 		noToken	: UD.noToken,
 		api		: api
 	})
-	
+
+    console.log(body)
+
 	$fn.isFunction(UD.onStart) && UD.onStart()		// 一开始就调用
-	
+
 	if(action === 'get'){
 		promise = axios.get(url + sParam, configs);
 		logMsg('%c' + action + ' === ' + api + url + sParam, 'color:blue')		// 输出 api
 	}else{
 		promise = axios.post(url, body, configs);
-		logMsg('%c' + action + ' === ' + api + url + JSON.stringify(body), 'color:blue')	
+		logMsg('%c' + action + ' === ' + api + url + JSON.stringify(body), 'color:blue')
 	}
-	
+
 	// 加载效果
 	return new Promise((resolve, reject) => {
 		promise.then(res => {	// 接口正确接收数据处理
 			let data = res.data
-			let code = data.code
-			
-			if(code === 200){	// 数据请求成功
+			let code = data.status
+
+			if(code === 1){	// 数据请求成功
 				resolve(data.data)
 				logMsg(url + '===', data.data)
-			} else if(code === 400){	// 登录信息已过期，请重新登录!
+			} else if(code === -40000){	// 登录信息已过期，请重新登录!
 				$fn.toast(data['msg'])
 				$fn.remove()
 				$fn.loginTo()
@@ -106,16 +108,16 @@ const coreRequest = (url, param, action, defined) => {
 				V.$router.push('/login')
 			}else{ // 数据请求成功但不符合规则
 				reject(data);
-					
+
 				$fn.isFunction(UD.onError) && UD.onError(data)	// 只要出错就调用
 				$fn.isFunction(UD.onFail) && UD.onFail(data)	// 数据处理不满足条件时调用
-				
+
 				if(UD.onMsg){
 					$fn.isFunction(UD.onMsg) && UD.onMsg(data)		// 自定义提示
 				}else{
 					$fn.toast(data['msg'],UD.onError)			// 默认开启出错提示
 				}
-				
+
 				logMsg(url + '===', data);
 			}
 			$fn.isFunction(UD.onEnd) && UD.onEnd(data)  			// 只要调用接口就调用
@@ -137,51 +139,52 @@ const get = (url,body,defined) => coreRequest(url,body,'get',defined)
 // ===================================================== pull 提交
 const submit = (_this,api,option)=>{
 	let opt = {
-		param:{},
-		loadingText:'数据提交中...',			
-		successText:'',					// 自定义成功提示
-		succeedFn:'',					// 成功之后执行
-		errorText:'',					// 自定义错误提示
-		submitLoading:'submitLoading', 	// 加载判断
-		loading:false,
-		runFirst:true,					// 先跳转，后提示
-//		replace:null,					// replace 路由
-//		push:null,						// push 路由
-//		refresh:false,					// 是否刷新
-//		closeToast:false,				// 是否关闭默认提示
-//		onEnd:null,			// 无论请求成功或失败都执行此方法
-//		onError:null,				//
-//		upload:false,					// 调用上传接口
-//		noToken:false,
-//		isBody:false,
-//		isFullApi:false,
-		...option
-	}
-	
+        param			: {},
+        loadingText		: '数据提交中...',
+        successText		: '',					// 自定义成功提示
+        succeedFn		: null,					// 成功之后执行
+        errorText		: '',					// 自定义错误提示
+        submitLoading	: 'submitLoading', 		// 加载判断
+        loading			: true,
+        runFirst		: true,					// 先跳转，后提示
+        type			: Config.contentType, 	// Content-Type 类型
+//		replace			: null,					// replace 路由
+//		push			: null,					// push 路由
+//		refresh			: false,				// 是否刷新
+//		closeToast		: false,				// 是否关闭默认提示
+//		onEnd			: null,					// 无论请求成功或失败都执行此方法
+//		onError			: null,					//
+//		upload			: false,				// 调用上传接口
+//		noToken			: false,
+//		isBody			: false,
+        ...option
+    }
+
 	if(_this) _this[opt.submitLoading] = true
-	
+
 	opt.loading && $fn.loading(true,opt.loadingText)
-	
+
 	const run = ()=>{
 		opt.replace && _this.$router.replace(opt.replace);
 		opt.push && _this.$router.push(opt.push)
 		opt.succeedFn && opt.succeedFn()
 	}
-	
+
 	return new Promise((resolve, reject)=>{
-		post(api,opt.param,{ 
-			onStart:()=>{ opt.onStart && opt.onStart(true) },
-			onEnd:()=>{
+		post(api,opt.param,{
+			onStart : ()=>{ opt.onStart && opt.onStart(true) },
+			onEnd   : ()=>{
 				if(_this) _this[opt.submitLoading] = false
 				opt.loading && $fn.loading(false)
 				opt.onEnd && opt.onEnd(false)
 			},
-			onMsg: opt.onMsg && ( data => { $fn.isFunction(opt.onMsg) && opt.onMsg(data) }),
-			noError:opt.noError,
-			onError:opt.onError,
-			upload:opt.upload,
-			noToken:opt.noToken,
-			isBody:opt.isBody,
+			onMsg	: opt.onMsg && ( data => { $fn.isFunction(opt.onMsg) && opt.onMsg(data) }),
+			noError	: opt.noError,
+			onError	: opt.onError,
+			upload	: opt.upload,
+			noToken	: opt.noToken,
+			isBody	: opt.isBody,
+			type	: opt.type
 		}).then(data=>{
 			resolve(data)
 			// 提示后执行
@@ -207,7 +210,7 @@ const pull = (_this,api,option)=>{
 		loading:false,					// 如果有加载效果
 		param:{},						// 参数
 		pullLoading:'pullLoading',		// 加载判断
-		loadingText:'数据加载中...',			
+		loadingText:'数据加载中...',
 //		onSuccess:null,			// 改变数据
 //		onError:null,
 //		noToken:false,
@@ -216,12 +219,12 @@ const pull = (_this,api,option)=>{
 //		closeToast:false,
 		...option
 	}
-	
+
 	if(_this) _this[opt.pullLoading] = true
 	opt.loading && $fn.loading(true,opt.loadingText)
 	// 格式化时间
 	let format = null;
-	
+
 	if($fn.hasArray(opt.format)){
 		format = {
 			f:opt.format,
@@ -234,7 +237,7 @@ const pull = (_this,api,option)=>{
 			...opt.format
 		}
 	}
-	
+
 	return new Promise((resolve,reject)=>{
 		get(api,opt.param,{
 			onStart:()=>{ opt.onStart && opt.onStart(true) },
@@ -249,7 +252,7 @@ const pull = (_this,api,option)=>{
 				// 出错，清空 data
 				setType(_this,opt.dataName)
 				opt.onError && opt.onError();
-				
+
 				if(!opt.loading){ $fn.loading(false) }
 			},
 			noToken:opt.noToken,
@@ -258,21 +261,21 @@ const pull = (_this,api,option)=>{
 				if(opt.hasKey){
 					$fn.addKeys(data, format);
 				}
-				
+
 				if($fn.isFunction(opt.onSuccess)){
 					data = opt.onSuccess(data);
 				}
-				
+
 				if($fn.isValid(opt.dataName)){
 					if(_this) _this[opt.dataName] = data
 				}
-				
+
 				resolve(data);
 			}else{
 				let stack = setType(_this,opt.dataName);
 				resolve(stack);
 			}
-			
+
 		})
 	})
 }
@@ -287,9 +290,9 @@ const paging = (_this,api,option)=>{
 //		format:{},						// 格式化时间
 		pag:'pag'
 	}
-	
+
 	Object.assign(opt,option || {});
-	
+
 	const { page, pageSize } = opt.param || {}
 	const param = {
 		page: page || 1, 			// 当前页
@@ -298,10 +301,10 @@ const paging = (_this,api,option)=>{
 	}
 	delete param.pageSize
 	delete param.total
-	
+
 	// 格式化时间
 	let format = null;
-	
+
 	if($fn.hasArray(opt.format)){
 		format = {
 			f:opt.format,
@@ -314,7 +317,7 @@ const paging = (_this,api,option)=>{
 			...opt.format
 		}
 	}
-	
+
 	return new Promise((resolve)=>{
 		pull(_this,api,{
 			onStart:()=>{ opt.onStart && opt.onStart(true) },
