@@ -19,8 +19,6 @@
 </template>
 
 <script>
-    import { Form } from 'element-ui'
-    Vue.use(Form)
 	export default {
 		components:{
 			FormItem	: ()=>import('@eu/form-item'),

@@ -1,7 +1,7 @@
 <template>
 	<Content isPage>
 		<!-- tabs -->
-		<el-tabs v-model='activeName' style='padding:0 10px' @tab-click='change'>
+		<Tabs v-model='activeName' style='padding:0 10px' @change='change'>
 			<el-tab-pane name='0'>
 				<span slot='label'>常规检测</span>
                 <!-- search-from -->
@@ -17,20 +17,17 @@
 				<!-- search-from -->
 				<DateSearch ref='tab2' hasImport v-if='active2'/>
 			</el-tab-pane>
-	  	</el-tabs>
+	  	</Tabs>
 	</Content>
 </template>
 
 <script>
-    // ================================================================ element-ui
-    import { Tabs, TabPane } from 'element-ui'
-    Vue.use(Tabs)
-    Vue.use(TabPane)
      // ================================================================ class
 	export default {
 		components:{
 			Content		: () => import('@cpx/content'),
 			DateSearch	: ()=>import('@tp/date-search'),
+            Tabs        : ()=>import('@eu/tabs')
 		},
 		data(){
 			return {

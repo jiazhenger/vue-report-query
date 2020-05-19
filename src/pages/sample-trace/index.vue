@@ -1,24 +1,24 @@
 <template>
 	<Content isPage>
 		<!-- tabs -->
-		<el-tabs v-model='activeName' style='padding:0 10px'>
+		<Tabs v-model='activeName' style='padding:0 10px'>
             <el-tab-pane label='报告单查询' name='0'></el-tab-pane>
 			<div class='fxj'>
-                <div :style="{width:fn.hasArray(data) ? 'calc(100% - 210px)' : '100%'}">
+                <div :style="{width:fn.hasObject(data) ? 'calc(100% - 210px)' : '100%'}">
                     <!-- search-from -->
                     <DateSearch @onRowClick='onRowClick' api='specimen/lists' :col='col'/>
                 </div>
-                <div v-if='fn.hasArray(data)' class='ex bor1 r8px' style='margin-top:60px;padding:8px 20px;align-self:flex-start'>
+                <div v-if='fn.hasObject(data)' class='ex bor1 r8px' style='margin-top:60px;padding:8px 20px;align-self:flex-start'>
                     <h3 class='b'>物流详情</h3>
                     <dl class='g9 lh22 mt15 f12 mb15'>
-                        <dd>条码号：123151</dd>
-                        <dd>物流编号：123151</dd>
-                        <dd>配送人：123151</dd>
+                        <dd>条码号：{{ fn.val(data.spec_code) }}</dd>
+                        <dd>物流编号：{{ fn.val(data.log_code) }}</dd>
+                        <dd>配送人：{{ fn.val(data.log_username) }}</dd>
                     </dl>
                     <!-- 时间线 -->
                     <el-timeline>
                         <el-timeline-item
-                            v-for='(v,i) in data'
+                            v-for='(v,i) in data.a'
                             :key        = 'i'
                             :type       = 'v.type'
                             :color      = 'fn.c0'
@@ -30,22 +30,20 @@
                       </el-timeline>
                 </div>
             </div>
-	  	</el-tabs>
+	  	</Tabs>
 	</Content>
 </template>
 
 <script>
     // ================================================================ element-ui
-    import { Tabs, TabPane, Timeline, TimelineItem } from 'element-ui'
-    Vue.use(Tabs)
-    Vue.use(TabPane)
-    Vue.use(Timeline)
+    import { Timeline, TimelineItem } from 'element-ui'
     Vue.use(TimelineItem)
      // ================================================================ class
 	export default {
 		components:{
 			Content		: ()=>import('@cpx/content'),
-			DateSearch	: ()=>import('@tp/date-search')
+			DateSearch	: ()=>import('@tp/date-search'),
+            Tabs        : ()=>import('@eu/tabs')
 		},
 		data(){
 			return {
@@ -61,24 +59,7 @@
                     { prop:'hospital', label:'送检单位', },
                     { prop:'check_time', label:'检测日期', width:'140px' },
                 ],
-                data:[{
-          content: '支持使用图标',
-          timestamp: '2018-04-12 20:46',
-          size: 'large',
-          type: 'primary',
-          icon: 'el-icon-more'
-        }, {
-          content: '支持自定义颜色',
-          timestamp: '2018-04-03 20:46',
-          color: '#0bbd87'
-        }, {
-          content: '支持自定义尺寸',
-          timestamp: '2018-04-03 20:46',
-          size: 'large'
-        }, {
-          content: '默认样式的节点',
-          timestamp: '2018-04-03 20:46'
-        }]
+                data:{}
 			}
 		},
         mounted(){

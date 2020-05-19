@@ -1,4 +1,4 @@
-<template>  
+<template>
 	<el-form-item :label='label' :class='{break:!breaks}' :prop='prop'>
     	<slot></slot>
   	</el-form-item>
@@ -6,7 +6,8 @@
 
 <script>
 	// ================================================================ element-ui
-	import { FormItem } from 'element-ui'
+	import { Form, FormItem } from 'element-ui'
+    Vue.use(Form)
 	Vue.use(FormItem)
 	// ================================================================  class
 	export default {

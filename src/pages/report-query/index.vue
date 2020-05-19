@@ -1,9 +1,9 @@
 <template>
 	<Content isPage>
 		<!-- tabs -->
-		<el-tabs v-model='activeName' style='padding:0 10px'>
+		<Tabs v-model='activeName' style='padding:0 10px'>
 			<el-tab-pane label='报告单查询' name='0'></el-tab-pane>
-	  	</el-tabs>
+	  	</Tabs>
 		<!-- search-from -->
 		<SearchBox>
 			<el-form ref='search' :inline='true' :model='model' @submit='submit'>
@@ -41,11 +41,6 @@
 </template>
 
 <script>
-    // ================================================================ element-ui
-    import { Tabs, TabPane, Form } from 'element-ui'
-    Vue.use(Tabs)
-    Vue.use(TabPane)
-    Vue.use(Form)
     // ================================================================ 二次封装 element-ui
     const $msg = import('@eu/js/msg')
      // ================================================================ class
@@ -60,6 +55,7 @@
 			Button		: ()=>import('@eu/button'),
 			DatePicker 	: ()=>import('@eu/date-picker'),
             Table 	    : ()=>import('@eu/cpt/table'),
+            Tabs        : ()=>import('@eu/tabs')
 		},
 		data(){
 			return {
