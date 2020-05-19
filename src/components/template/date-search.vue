@@ -57,7 +57,11 @@
 				model:{},
 				data:[],
 				pag:{
-					change: v => this.fetch(v)
+					change: v => this.fetch(v),
+                    sizeChange: v=> {
+                        this.pageSize = v;
+                        this.fetch(1,{pageSize:v})
+                    }
 				},
 				pagingLoading:true,
 			}
@@ -73,15 +77,14 @@
                     model.end_date = model.date.end
                     delete model.date
                 }
-                $http.paging(this, this.api,{param:{current,...model}})
+                $http.paging(this, this.api,{param:{current,...model,...param}})
             },
 			submit(){
-                this.fetch(1)
-				// this.$emit('submit',this.model)
+                this.fetch(1,{pageSize:this.pageSize})
 			},
 			reset(){
-//				this.$refs.search.resetFields()
 				this.$refs.d.reset()
+                this.model = {}
 			},
             // 点击行触发
             onRowClick(v){ this.$emit('onRowClick',v) }

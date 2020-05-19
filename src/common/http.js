@@ -293,12 +293,13 @@ const paging = (_this,api,option)=>{
 
 	const { current, pageSize } = opt.param || {}
 	const param = {
-        ...opt.param,
 		page        : current || 1, 			    // 当前页
 		per_page    : pageSize || Config.pageSize,		// 每页显示多少条数据
+        ...opt.param,
 	}
 	delete param.pageSize
 	delete param.total
+    delete param.current
 
 	// 格式化时间
 	let format = null;
@@ -340,7 +341,7 @@ const paging = (_this,api,option)=>{
 				_this[opt.dataName] = result
 				resolve(result)
 			}
-            
+
             const content = document.querySelector('#page')
             if(content){ content.scrollTop = 0  }
 

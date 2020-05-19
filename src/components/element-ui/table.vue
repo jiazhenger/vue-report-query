@@ -19,7 +19,7 @@
                 <slot :scope='scope'></slot>
             </template>
 		</el-table>
-		<template v-if='fn.hasObject(pag)'><Pagination :pag='pag' @change='onChange' /></template>
+		<template v-if='fn.hasObject(pag) && fn.hasArray(data)'><Pagination :pag='pag' @change='onChange' @sizeChange='sizeChange' /></template>
 	</Loading>
 </template>
 
@@ -68,7 +68,10 @@
 			clear(){
 				this.$refs.table.clearSelection()
 			},
+            // 当前页发生改变时触发
 			onChange(v){ this.$emit('change',v) },
+            // 每页显示条数改变时触发
+            sizeChange(v){ this.$emit('sizeChange',v)},
             // 点击行触发
             onRowClick(v){ this.$emit('onRowClick',v) }
 		}

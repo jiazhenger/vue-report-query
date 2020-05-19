@@ -1,15 +1,16 @@
-<template>  
+<template>
 	<div class='p10' :class="{fxmr:pag.align==='right'||!pag.align,fxmc:pag.align==='center'}">
-		<el-pagination 
+		<el-pagination
 			background
-	  		layout			= 'total, prev, pager, next, jumper'
-	  		:total			= 'pag.total'
-	  		:page-size 		= 'pag.pageSize'
-	  		:current-page 	= 'pag.current'
-	  		:page-sizes 	= 'pag.pages||[5,10,20]'
-	  		:small 			= 'pag.small'
+	  		:layout			= 'pags.layout'
+	  		:total			= 'pags.total'
+	  		:page-size 		= 'pags.pageSize'
+	  		:current-page 	= 'pags.current'
+	  		:page-sizes 	= 'pags.pages||[5,10,20,30,40,50]'
+	  		:small 			= 'pags.small'
 	  		hide-on-single-page
-	  		@current-change	= 'onChange'
+	  		@current-change	= 'change'
+            @size-change    = 'sizeChange'
 		/>
 	</div>
 </template>
@@ -21,13 +22,22 @@
 	// ================================================================  class
 	export default {
 		props:{
-			pag:{ type:Object, default:()=>({ total: 0, pageSize: 10, align:'right' })},
+			pag:{ type:Object, default:{}}
 		},
+        data(){
+            return {
+                pags:{ total: 0, pageSize: 10, align:'right', layout:'total, prev, pager, next, sizes, jumper', ...this.pag}
+            }
+        },
 		methods:{
-			onChange(v){
+			change(v){
 				this.$emit('change',v)
 				this.pag.change(v)
-			}
+			},
+            sizeChange(v){
+            	this.$emit('sizeChange',v)
+            	this.pag.sizeChange(v)
+            }
 		}
 	}
 </script>

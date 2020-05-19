@@ -65,8 +65,12 @@
 				data2:[],
                 selectData:[],
 				pag:{
-		        	change: v => this.fetch(v)
-		        },
+					change: v => this.fetch(v),
+				    sizeChange: v=> {
+				        this.pageSize = v;
+				        this.fetch(1,{pageSize:v})
+				    }
+				},
 				pagingLoading:true,
 				col:[
                     { prop:'selection' , width:'40px', fixed:true, align:'center' },
@@ -106,15 +110,16 @@
                     model.end_date = model.date.end
                     delete model.date
                 }
-                $http.paging(this,'report/lists',{param:{current,...model}})
+                $http.paging(this,'report/lists',{param:{current,...model,...param}})
             },
 			submit(){
-				this.fetch(1)
+				this.fetch(1,{pageSize:this.pageSize})
 			},
 			reset(){
 				this.$refs.search.resetFields()
 				this.$refs.d.reset()
                 this.data2 = []
+                this.model = { }
 			},
 			onSelect(v){
 				if(v.length > 0){
