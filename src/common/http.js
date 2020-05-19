@@ -295,7 +295,7 @@ const paging = (_this,api,option)=>{
 	const param = {
         ...opt.param,
 		page        : current || 1, 			    // 当前页
-		per_page    : pageSize || 19,		// 每页显示多少条数据
+		per_page    : pageSize || Config.pageSize,		// 每页显示多少条数据
 	}
 	delete param.pageSize
 	delete param.total

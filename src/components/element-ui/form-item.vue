@@ -7,8 +7,8 @@
 <script>
 	// ================================================================ element-ui
 	import { Form, FormItem } from 'element-ui'
-    Vue.use(Form)
 	Vue.use(FormItem)
+    Vue.use(Form)
 	// ================================================================  class
 	export default {
 		props:{

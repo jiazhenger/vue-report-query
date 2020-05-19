@@ -12,6 +12,8 @@ Vue.config.productionTip = false
 /* element-ui 配置 */
 import './element-variables.scss'
 Vue.prototype.$ELEMENT = { size: 'small', zIndex: 3000 }
+import { Form } from 'element-ui'
+Vue.use(Form)
 /* 启动 */
 
 window.Vue = Vue

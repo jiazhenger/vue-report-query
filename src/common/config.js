@@ -20,5 +20,6 @@ if(env){ // 开发环境
 module.exports = {
 	api : api, 	// api
 	env : env, 	// 环境变量
-	contentType: 1
+	contentType: 1,
+    pageSize: 20
 }

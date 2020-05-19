@@ -1,7 +1,7 @@
 <template>
 	<Content isPage>
 		<!-- tabs -->
-		<Tabs v-model='activeName' style='padding:0 10px' @change='change'>
+		<Tabs v-model='activeName' class='swrap' @change='change'>
 			<el-tab-pane name='0'>
 				<span slot='label'>常规检测</span>
                 <!-- search-from -->

@@ -1,14 +1,14 @@
 <template>
 	<Content isPage>
 		<!-- tabs -->
-		<Tabs v-model='activeName' style='padding:0 10px'>
+		<Tabs v-model='activeName' class='swrap'>
             <el-tab-pane label='报告单查询' name='0'></el-tab-pane>
 			<div class='fxj'>
                 <div :style="{width:fn.hasObject(data) ? 'calc(100% - 210px)' : '100%'}">
                     <!-- search-from -->
                     <DateSearch @onRowClick='onRowClick' api='specimen/lists' :col='col'/>
                 </div>
-                <div v-if='fn.hasObject(data)' class='ex bor1 r8px' style='margin-top:60px;padding:8px 20px;align-self:flex-start'>
+                <div v-if='fn.hasObject(data)' class='ex bor1 r8px ml10' style='margin-top:60px;padding:8px 20px;align-self:flex-start'>
                     <h3 class='b'>物流详情</h3>
                     <dl class='g9 lh22 mt15 f12 mb15'>
                         <dd>条码号：{{ fn.val(data.spec_code) }}</dd>
@@ -18,14 +18,13 @@
                     <!-- 时间线 -->
                     <el-timeline>
                         <el-timeline-item
-                            v-for='(v,i) in data.a'
+                            v-for='(v,i) in data.details'
                             :key        = 'i'
-                            :type       = 'v.type'
                             :color      = 'fn.c0'
                             size        = 'large'
-                            :timestamp  ='v.timestamp'
+                            :timestamp  ='v.gps_time'
                         >
-                            {{v.content}}
+                            {{v.address}}
                         </el-timeline-item>
                       </el-timeline>
                 </div>
@@ -37,6 +36,7 @@
 <script>
     // ================================================================ element-ui
     import { Timeline, TimelineItem } from 'element-ui'
+    Vue.use(Timeline)
     Vue.use(TimelineItem)
      // ================================================================ class
 	export default {

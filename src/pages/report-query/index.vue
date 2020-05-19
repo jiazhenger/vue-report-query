@@ -1,42 +1,42 @@
 <template>
 	<Content isPage>
 		<!-- tabs -->
-		<Tabs v-model='activeName' style='padding:0 10px'>
+		<Tabs v-model='activeName' class='swrap'>
 			<el-tab-pane label='报告单查询' name='0'></el-tab-pane>
+            <!-- search-from -->
+            <SearchBox>
+            	<el-form ref='search' :inline='true' :model='model' @submit='submit'>
+            		<FormItem label='条码号' prop='spec_code'>
+            			<Input v-model='model.spec_code' p='请输入条码号' @clear='submit' :disabled='pagingLoading'/>
+            		</FormItem>
+            		<FormItem class='auto' label='送检日期' prop='date'>
+            			<DatePicker ref='d' v-model='model.date' @clear='submit' @change='submit' :disabled='pagingLoading'/>
+            		</FormItem>
+            		<FormItem label='病人姓名' prop='patient_name'>
+            			<Input v-model='model.patient_name' p='请输入病人姓名' @clear='submit' :disabled='pagingLoading'/>
+            		</FormItem>
+            		<FormItem label='检测项目' prop='kind_name'>
+            			<Input v-model='model.kind_name' p='请输入检测项目' @clear='submit' :disabled='pagingLoading'/>
+            		</FormItem>
+            		<FormItem label='样本状态' prop='status'>
+            			<Select v-model='model.status' p='请输入样本状态' @clear='submit' :disabled='pagingLoading' :data='[]'/>
+            		</FormItem>
+            		<FormItem class='auto'>
+            			<Button label='查询' native-type='submit'  @click='submit($event)' :loading='pagingLoading'/>
+            			<Button label='重置' plain @click='reset' :disabled='pagingLoading'/>
+            			<Button label='报告预览' plain :disabled='pagingLoading'/>
+            			<Button label='打印' plain :disabled='pagingLoading'/>
+            		</FormItem>
+            	</el-form>
+            </SearchBox>
+            <!-- table -->
+            <div class='fx table-box'>
+            	<div :style="{width:fn.hasArray(data2)?'60%':'100%'}">
+            		<Table ref='list' :data='data' :col='col' @select='onSelect' :pag='pag' :loading='pagingLoading' @onRowClick='onRowClick'/>
+            	</div>
+            	<div v-if='fn.hasArray(data2)' class='ml10' style='width:calc(40% - 10px)'><Table :data='data2' :col='col2'/></div>
+            </div>
 	  	</Tabs>
-		<!-- search-from -->
-		<SearchBox>
-			<el-form ref='search' :inline='true' :model='model' @submit='submit'>
-				<FormItem label='条码号' prop='spec_code'>
-					<Input v-model='model.spec_code' p='请输入条码号' @clear='submit' :disabled='pagingLoading'/>
-				</FormItem>
-				<FormItem class='auto' label='送检日期' prop='date'>
-					<DatePicker ref='d' v-model='model.date' @clear='submit' @change='submit' :disabled='pagingLoading'/>
-				</FormItem>
-				<FormItem label='病人姓名' prop='patient_name'>
-					<Input v-model='model.patient_name' p='请输入病人姓名' @clear='submit' :disabled='pagingLoading'/>
-				</FormItem>
-				<FormItem label='检测项目' prop='kind_name'>
-					<Input v-model='model.kind_name' p='请输入检测项目' @clear='submit' :disabled='pagingLoading'/>
-				</FormItem>
-				<FormItem label='样本状态' prop='status'>
-					<Select v-model='model.status' p='请输入样本状态' @clear='submit' :disabled='pagingLoading' :data='[]'/>
-				</FormItem>
-				<FormItem class='auto'>
-					<Button label='查询' native-type='submit'  @click='submit($event)' :loading='pagingLoading'/>
-					<Button label='重置' plain @click='reset' :disabled='pagingLoading'/>
-					<Button label='报告预览' plain :disabled='pagingLoading'/>
-					<Button label='打印' plain :disabled='pagingLoading'/>
-				</FormItem>
-			</el-form>
-		</SearchBox>
-		<!-- table -->
-	  	<div class='fx' style='margin:10px'>
-	  		<div :style="{width:fn.hasArray(data2)?'60%':'100%'}">
-	  			<Table ref='list' :data='data' :col='col' @select='onSelect' :pag='pag' :loading='pagingLoading' @onRowClick='onRowClick'/>
-	  		</div>
-	  		<div v-if='fn.hasArray(data2)' class='ml10' style='width:calc(40% - 10px)'><Table :data='data2' :col='col2'/></div>
-	  	</div>
 	</Content>
 </template>
 
@@ -48,7 +48,6 @@
 		components:{
 			Content		: ()=>import('@cpx/content'),
             SearchBox	: ()=>import('@tp/search-box'),
-			Form		: ()=>import('@eu/form'),
 			FormItem	: ()=>import('@eu/form-item'),
 			Input		: ()=>import('@eu/input'),
 			Select		: ()=>import('@eu/select'),

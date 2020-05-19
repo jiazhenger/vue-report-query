@@ -12,13 +12,14 @@
         		</FormItem>
         	</el-form>
         </SearchBox>
-        <div style='margin:10px;'>
+        <div class='table-box'>
             <Table ref='list' :data='data' :col='col' :pag='pag' :loading='pagingLoading' @onRowClick='onRowClick'/>
         </div>
     </div>
 </template>
 
 <script>
+    // ================================================================ classs
 	export default {
 		components:{
 			FormItem	: ()=>import('@eu/form-item'),
