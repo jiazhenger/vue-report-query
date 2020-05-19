@@ -6,7 +6,7 @@
 			<div class='fxj'>
                 <div :style="{width:fn.hasArray(data) ? 'calc(100% - 210px)' : '100%'}">
                     <!-- search-from -->
-                    <DateSearch @onRowClick='onRowClick'/>
+                    <DateSearch @onRowClick='onRowClick' api='specimen/lists' :col='col'/>
                 </div>
                 <div v-if='fn.hasArray(data)' class='ex bor1 r8px' style='margin-top:60px;padding:8px 20px;align-self:flex-start'>
                     <h3 class='b'>物流详情</h3>
@@ -51,6 +51,16 @@
 			return {
                 fn:$fn,
 				activeName:'0',
+                col:[
+                    { prop:'spec_code', 	label:'条码号', width:'120px' },
+                    { prop:'patient_name', 	label:'病人姓名'},
+                    { prop:'sex', label:'性别', align:'center', width:'80px' },
+                    { prop:'age', label:'年龄', align:'center', width:'80px' },
+                    { prop:'project_name', label:'项目名称' },
+                    { prop:'delivery_time', label:'送检日期', width:'140px' },
+                    { prop:'hospital', label:'送检单位', },
+                    { prop:'check_time', label:'检测日期', width:'140px' },
+                ],
                 data:[{
           content: '支持使用图标',
           timestamp: '2018-04-12 20:46',
@@ -75,9 +85,9 @@
 
         },
 		methods:{
-             // 点击行触发
+            // 点击行触发
             onRowClick(v){
-                // $http.pull(this,'specimen/log', { param:{box_number:1} })
+                $http.pull(this,'specimen/log', { param:{box_number:v.box_number} })
             }
 		}
 	}

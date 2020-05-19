@@ -71,7 +71,7 @@
                 const model = $fn.getValid(this.model)
                 if(model.date){
                     model.start_date = model.date.start
-                    model.end_data = model.date.end
+                    model.end_date = model.date.end
                     delete model.date
                 }
                 $http.paging(this, this.api,{param:{current,...model}})

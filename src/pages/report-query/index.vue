@@ -32,10 +32,10 @@
 		</SearchBox>
 		<!-- table -->
 	  	<div class='fx' style='margin:10px'>
-	  		<div :style="{width:fn.hasArray(data2)?'70%':'100%'}">
-	  			<Table ref='list' :data='data' :col='col' @select='onSelect' :pag='pag' :loading='pagingLoading'/>
+	  		<div :style="{width:fn.hasArray(data2)?'60%':'100%'}">
+	  			<Table ref='list' :data='data' :col='col' @select='onSelect' :pag='pag' :loading='pagingLoading' @onRowClick='onRowClick'/>
 	  		</div>
-	  		<div v-if='fn.hasArray(data2)' class='ml10' style='width:calc(30% - 10px)'><Table :data='data2' :col='col2'/></div>
+	  		<div v-if='fn.hasArray(data2)' class='ml10' style='width:calc(40% - 10px)'><Table :data='data2' :col='col2'/></div>
 	  	</div>
 	</Content>
 </template>
@@ -46,6 +46,8 @@
     Vue.use(Tabs)
     Vue.use(TabPane)
     Vue.use(Form)
+    // ================================================================ 二次封装 element-ui
+    const $msg = import('@eu/js/msg')
      // ================================================================ class
 	export default {
 		components:{
@@ -64,51 +66,36 @@
                 fn:$fn,
 				activeName:'0',
 				model:{},
-				data:[{
-                    name:'123',
-                    code:'456',
-                    price:'789'
-                },
-                {
-                    name:'a',
-                    code:'b',
-                    price:'c'
-                }],
+				data:[],
 				data2:[],
+                selectData:[],
 				pag:{
 		        	change: v => this.fetch(v)
 		        },
-				pagingLoading:false,
+				pagingLoading:true,
 				col:[
                     { prop:'selection' , width:'40px', fixed:true, align:'center' },
 		        	{ prop:'spec_code', 	label:'条码号', width:'120px' },
-		        	{ prop:'patient_name', 	label:'病人姓名'},
-		        	{ prop:'sex', label:'性别', align:'center' },
-                    { prop:'age', label:'年龄', align:'center' },
+		        	{ prop:'patient_name', 	label:'病人姓名', width:'70px'},
+		        	{ prop:'sex', label:'性别', align:'center', width:'60px' },
+                    { prop:'age', label:'年龄', align:'center', width:'60px' },
                     { prop:'outpatient', label:'门诊/住院号', width:'100px' },
-                    { prop:'department_name', label:'科室' },
-                    { prop:'doctor', label:'送检医生' },
-                    { prop:'project_name', label:'项目名称' },
-                    { prop:'check_status', label:'检测状态' },
-                    { prop:'check_time', label:'检测时间', width:'140px' },
-                    { prop:'report_time', label:'报告时间', width:'140px' },
-                    { prop:'print_time', label:'打印时间（首次）', width:'140px' },
-                    { prop:'print_times', label:'打印次数' }
+                    { prop:'department_name', label:'科室', width:'120px' },
+                    { prop:'doctor', label:'送检医生', width:'70px' },
+                    { prop:'project_name', label:'项目名称', align:'center'},
+                    { prop:'check_status', label:'检测状态', align:'center', width:'100px' },
+                    { prop:'check_time', label:'检测时间', align:'center', width:'140px' },
+                    { prop:'report_time', label:'报告时间', align:'center', width:'140px' },
+                    { prop:'print_time', label:'打印时间（首次）', align:'center', width:'140px' },
+                    { prop:'print_times', label:'打印次数', align:'center', width:'70px' }
 		        ],
 		        col2:[
-		        	{ prop:'spec_code', 	label:'条码号', width:'120px' },
-		        	{ prop:'patient_name', 	label:'病人姓名'},
-		        	{ prop:'sex', label:'性别', align:'center' },
-		        	{ prop:'age', label:'年龄', align:'center' },
-		        	{ prop:'outpatient', label:'门诊/住院号', width:'100px' },
-		        	{ prop:'department_name', label:'科室' },
-		        	{ prop:'doctor', label:'送检医生' },
-		        	{ prop:'project_name', label:'项目名称' },
-		        	{ prop:'check_status', label:'检测状态' },
-		        	{ prop:'check_time', label:'检测时间', width:'140px' },
-		        	{ prop:'report_time', label:'报告时间', width:'140px' },
-		        	{ prop:'print_time', label:'打印时间（首次）', width:'140px' },
-		        	{ prop:'print_times', label:'打印次数' }
+		        	{ prop:'kind_name', label:'项目名称', width:'200px'},
+		        	{ prop:'kind_en_name', label:'项目英文名', width:'200px' },
+		        	{ prop:'result', label:'结果'},
+		        	{ prop:'unit_val', label:'单位', align:'center', width:'60px'},
+		        	{ prop:'tips', label:'提示' },
+                    { prop:'reference', label:'参考范围' },
 		        ],
 			}
 		},
@@ -121,7 +108,7 @@
                 const model = $fn.getValid(this.model)
                 if(model.date){
                     model.start_date = model.date.start
-                    model.end_data = model.date.end
+                    model.end_date = model.date.end
                     delete model.date
                 }
                 $http.paging(this,'report/lists',{param:{current,...model}})
@@ -136,9 +123,17 @@
 			},
 			onSelect(v){
 				if(v.length > 0){
-					this.data2 = Array.from(new Set([...this.data2,...v]))
+					this.selectData = Array.from(new Set([...this.selectData,...v]))
 				}
-			}
+			},
+            // 点击行触发
+            onRowClick(v){
+                $http.pull(this,'report/project', { param:{spec_code:v.spec_code}, dataName:'data2' }).then(data=>{
+                    if(!$fn.hasArray(data)){
+                        $msg.then(f=>f('此报告无关联项目数据',0))
+                    }
+                })
+            }
 		}
 	}
 </script>
