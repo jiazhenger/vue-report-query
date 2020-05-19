@@ -339,7 +339,7 @@ const paging = (_this,api,option)=>{
 			if($fn.isValid(opt.dataName)){
 //				const result = $fn.addKey(data, format);
 				_this[opt.dataName] = result
-				resolve(result)
+				resolve(data)
 			}
 
             const content = document.querySelector('#page')

@@ -22,6 +22,7 @@
                 :fixed  = 'v.fixed'
 			/>
 		</template>
+        <template slot='pleft'><slot name='pleft' /></template>
 	</Table>
 </template>
 

@@ -32,7 +32,13 @@
             <!-- table -->
             <div class='fx table-box'>
             	<div :style="{width:fn.hasArray(data2)?'60%':'100%'}">
-            		<Table ref='list' :data='data' :col='col' @select='onSelect' :pag='pag' :loading='pagingLoading' @onRowClick='onRowClick'/>
+            		<Table ref='list' :data='data' :col='col' @select='onSelect' :pag='pag' :loading='pagingLoading' @onRowClick='onRowClick'>
+                        <template slot='pleft'>
+                            <dl class='x-fl f12 g9'>
+                                <dd class='mr5' v-for='(v,i) in pdata'>{{v.name}}: 【{{v.total}}】{{(i < (pdata.length-1)) ? ',' : ''}}</dd>
+                            </dl>
+                        </template>
+                    </Table>
             	</div>
             	<div v-if='fn.hasArray(data2)' class='ml10' style='width:calc(40% - 10px)'><Table :data='data2' :col='col2'/></div>
             </div>
@@ -64,6 +70,7 @@
 				data:[],
 				data2:[],
                 selectData:[],
+                pdata:[],
 				pag:{
 					change: v => this.fetch(v),
 				    sizeChange: v=> {
@@ -110,7 +117,9 @@
                     model.end_date = model.date.end
                     delete model.date
                 }
-                $http.paging(this,'report/lists',{param:{current,...model,...param}})
+                $http.paging(this,'report/lists',{param:{current,...model,...param}}).then(data=>{
+                    this.pdata=data.stat
+                })
             },
 			submit(){
 				this.fetch(1,{pageSize:this.pageSize})

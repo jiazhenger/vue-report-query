@@ -19,7 +19,12 @@
                 <slot :scope='scope'></slot>
             </template>
 		</el-table>
-		<template v-if='fn.hasObject(pag) && fn.hasArray(data)'><Pagination :pag='pag' @change='onChange' @sizeChange='sizeChange' /></template>
+		<template v-if='fn.hasObject(pag) && fn.hasArray(data)'>
+            <div class='fxm'>
+                <div class='ex'><slot name='pleft' /></div>
+                <Pagination :pag='pag' @change='onChange' @sizeChange='sizeChange' />
+            </div>
+        </template>
 	</Loading>
 </template>
 
