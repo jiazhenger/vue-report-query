@@ -5,17 +5,17 @@
 			<el-tab-pane name='0'>
 				<span slot='label'>常规检测</span>
                 <!-- search-from -->
-				<DateSearch ref='tab0' v-if='active0'/>
+				<DateSearch ref='tab0' hasImport v-if='active0'/>
 			</el-tab-pane>
 			<el-tab-pane name='1'>
 				<span slot='label'>病理结果</span>
 				<!-- search-from -->
-				<DateSearch ref='tab1' v-if='active1'/>
+				<DateSearch ref='tab1' hasImport v-if='active1'/>
 			</el-tab-pane>
 			<el-tab-pane name='2'>
 				<span slot='label'>微生物结果</span>
 				<!-- search-from -->
-				<DateSearch ref='tab2' v-if='active2'/>
+				<DateSearch ref='tab2' hasImport v-if='active2'/>
 			</el-tab-pane>
 	  	</el-tabs>
 	</Content>

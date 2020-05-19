@@ -2,13 +2,13 @@
 	<div>
         <SearchBox>
         	<el-form ref='search' :inline='true' :model='model' @submit='submit'>
-        		<FormItem class='auto' label='送检日期' prop='time'>
-        			<DatePicker ref='d' v-model='model.time' @clear='submit' @change='submit' :disabled='pagingLoading'/>
+        		<FormItem class='auto' label='送检日期' prop='date'>
+        			<DatePicker ref='d' v-model='model.date' @clear='submit' @change='submit' :disabled='pagingLoading'/>
         		</FormItem>
         		<FormItem class='auto'>
         			<Button label='查询' native-type='submit'  @click='submit($event)' :loading='pagingLoading'/>
         			<Button label='重置' plain @click='reset' :disabled='pagingLoading'/>
-        			<Button label='导出' plain :disabled='pagingLoading'/>
+        			<Button v-if='hasImport' label='导出' plain :disabled='pagingLoading'/>
         		</FormItem>
         	</el-form>
         </SearchBox>
@@ -50,7 +50,8 @@
                     { prop:'print_time', label:'打印时间（首次）', width:'140px' },
                     { prop:'print_times', label:'打印次数' }
                 ]
-            }
+            },
+            hasImport:{ type:Boolean, default:false }
 		},
 		data(){
 			return {
@@ -68,6 +69,11 @@
 		methods:{
             fetch(current,param){
                 const model = $fn.getValid(this.model)
+                if(model.date){
+                    model.start_date = model.date.start
+                    model.end_data = model.date.end
+                    delete model.date
+                }
                 $http.paging(this, this.api,{param:{current,...model}})
             },
 			submit(){

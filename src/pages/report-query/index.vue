@@ -16,11 +16,11 @@
 				<FormItem label='病人姓名' prop='patient_name'>
 					<Input v-model='model.patient_name' p='请输入病人姓名' @clear='submit' :disabled='pagingLoading'/>
 				</FormItem>
-				<FormItem label='检测项目' prop='project_name'>
-					<Input v-model='model.project_name' p='请输入检测项目' @clear='submit' :disabled='pagingLoading'/>
+				<FormItem label='检测项目' prop='kind_name'>
+					<Input v-model='model.kind_name' p='请输入检测项目' @clear='submit' :disabled='pagingLoading'/>
 				</FormItem>
-				<FormItem label='样本状态' prop='check_status'>
-					<Select v-model='model.check_status' p='请输入样本状态' @clear='submit' :disabled='pagingLoading' :data='[]'/>
+				<FormItem label='样本状态' prop='status'>
+					<Select v-model='model.status' p='请输入样本状态' @clear='submit' :disabled='pagingLoading' :data='[]'/>
 				</FormItem>
 				<FormItem class='auto'>
 					<Button label='查询' native-type='submit'  @click='submit($event)' :loading='pagingLoading'/>
@@ -119,6 +119,11 @@
 			// ajax
 			fetch(current,param){
                 const model = $fn.getValid(this.model)
+                if(model.date){
+                    model.start_date = model.date.start
+                    model.end_data = model.date.end
+                    delete model.date
+                }
                 $http.paging(this,'report/lists',{param:{current,...model}})
             },
 			submit(){
