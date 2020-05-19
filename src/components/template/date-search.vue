@@ -13,7 +13,7 @@
         	</el-form>
         </SearchBox>
         <div style='margin:10px;'>
-            <Table ref='list' :data='data' :col='col' :pag='pag' :loading='pagingLoading'/>
+            <Table ref='list' :data='data' :col='col' :pag='pag' :loading='pagingLoading' @onRowClick='onRowClick'/>
         </div>
     </div>
 </template>
@@ -83,7 +83,9 @@
 			reset(){
 //				this.$refs.search.resetFields()
 				this.$refs.d.reset()
-			}
+			},
+            // 点击行触发
+            onRowClick(v){ this.$emit('onRowClick',v) }
 		}
 	}
 </script>

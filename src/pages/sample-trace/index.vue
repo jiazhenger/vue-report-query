@@ -4,11 +4,11 @@
 		<el-tabs v-model='activeName' style='padding:0 10px'>
             <el-tab-pane label='报告单查询' name='0'></el-tab-pane>
 			<div class='fxj'>
-                <div style='width:calc(100% - 210px)'>
+                <div :style="{width:fn.hasArray(data) ? 'calc(100% - 210px)' : '100%'}">
                     <!-- search-from -->
-                    <DateSearch/>
+                    <DateSearch @onRowClick='onRowClick'/>
                 </div>
-                <div class='ex bor1 r8px' style='margin-top:60px;padding:8px 20px;align-self:flex-start'>
+                <div v-if='fn.hasArray(data)' class='ex bor1 r8px' style='margin-top:60px;padding:8px 20px;align-self:flex-start'>
                     <h3 class='b'>物流详情</h3>
                     <dl class='g9 lh22 mt15 f12 mb15'>
                         <dd>条码号：123151</dd>
@@ -75,7 +75,10 @@
 
         },
 		methods:{
-            getWu(){ $http.pull(this,'specimen/log', { param:{box_number:1} }) }
+             // 点击行触发
+            onRowClick(v){
+                // $http.pull(this,'specimen/log', { param:{box_number:1} })
+            }
 		}
 	}
 </script>

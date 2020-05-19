@@ -9,6 +9,7 @@
 		:height 			= 'height'
 		:pag 				= 'pag'
 		@change 			= 'onChange'
+        @onRowClick         = 'onRowClick'
 	>
         <slot></slot>
 		<template v-for	= '(v,i) in col'>
@@ -51,7 +52,9 @@
 			onSelect(v){
 				this.$emit('select',v)
 			},
-			onChange(v){ this.$emit('change',v)}
+			onChange(v){ this.$emit('change',v)},
+             // 点击行触发
+            onRowClick(v){ this.$emit('onRowClick',v)}
 		}
 	}
 </script>

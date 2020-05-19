@@ -9,6 +9,7 @@
 			:height 					= 'height'
 			highlight-current-row
 			@selection-change			= 'getRows($event)'
+            @row-click                  = 'onRowClick'
 			element-loading-text 		= '数据加载中'
 			element-loading-background	= 'rgba(0, 0, 0, 0.1)'
 			:style						= '{minHeight:mh}'
@@ -67,7 +68,9 @@
 			clear(){
 				this.$refs.table.clearSelection()
 			},
-			onChange(v){ this.$emit('change',v)}
+			onChange(v){ this.$emit('change',v) },
+            // 点击行触发
+            onRowClick(v){ this.$emit('onRowClick',v) }
 		}
 	}
 </script>
