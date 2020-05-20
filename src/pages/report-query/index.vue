@@ -1,5 +1,5 @@
 <template>
-	<Content isPage>
+	<Content :scrollY='false' contentClass='h' isPage>
 		<!-- tabs -->
 		<Tabs v-model='activeName' class='swrap'>
 			<el-tab-pane label='报告单查询' name='0'></el-tab-pane>
@@ -30,17 +30,21 @@
             	</el-form>
             </SearchBox>
             <!-- table -->
-            <div class='fx table-box'>
-            	<div :style="{width:fn.hasArray(data2)?'60%':'100%'}">
-            		<Table ref='list' :data='data' :col='col' @select='onSelect' :pag='pag' :loading='pagingLoading' @onRowClick='onRowClick'>
-                        <template slot='pleft'>
-                            <dl class='x-fl f12 g9'>
-                                <dd class='mr5' v-for='(v,i) in pdata'>{{v.name}}: 【{{v.total}}】{{(i < (pdata.length-1)) ? ',' : ''}}</dd>
-                            </dl>
-                        </template>
-                    </Table>
-            	</div>
-            	<div v-if='fn.hasArray(data2)' class='ml10' style='width:calc(40% - 10px)'><Table :data='data2' :col='col2'/></div>
+            <div class='table-box'>
+            	<div class='fx h'>
+                    <div class='fv h' id='tableBox' :style="{width:fn.hasArray(data2)?'60%':'100%'}">
+                    	<Table ref='list' :height='height' :data='data' :col='col' @select='onSelect' :pag='pag' :loading='pagingLoading' @onRowClick='onRowClick'>
+                            <template slot='pleft'>
+                                <dl class='x-fl f12 g9'>
+                                    <dd class='mr5' v-for='(v,i) in pdata'>{{v.name}}: 【{{v.total}}】{{(i < (pdata.length-1)) ? ',' : ''}}</dd>
+                                </dl>
+                            </template>
+                        </Table>
+                    </div>
+                    <div v-if='fn.hasArray(data2)' class='ml10 rel ' style='width:calc(40% - 10px)'>
+                        <Table :height='height' :data='data2' :col='col2'/>
+                    </div>
+                </div>
             </div>
 	  	</Tabs>
 	</Content>
@@ -82,7 +86,7 @@
 				col:[
                     { prop:'selection' , width:'40px', fixed:true, align:'center' },
 		        	{ prop:'spec_code', 	label:'条码号', width:'120px' },
-		        	{ prop:'patient_name', 	label:'病人姓名', width:'70px'},
+		        	{ prop:'patient_name', 	label:'病人姓名', width:'120px'},
 		        	{ prop:'sex', label:'性别', align:'center', width:'60px' },
                     { prop:'age', label:'年龄', align:'center', width:'60px' },
                     { prop:'outpatient', label:'门诊/住院号', width:'100px' },
@@ -103,10 +107,14 @@
 		        	{ prop:'tips', label:'提示' },
                     { prop:'reference', label:'参考范围' },
 		        ],
+                height:0
 			}
 		},
 		mounted(){
 			this.fetch()
+            setTimeout(()=>{
+                this.height = document.querySelector('#tableBox').clientHeight
+            },100)
 		},
 		methods:{
 			// ajax

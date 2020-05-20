@@ -13,7 +13,7 @@ const routes = [
 			{ path:'/', component: loadAsync('index') },
 			{ path:'/main/news', component: loadAsync('index/news') },
 			{ path:'/main/notice', component: loadAsync('index/notice') },
-			{ path:'/main/detail', component: loadAsync('index/detail') },
+			{ path:'/main/detail/:id', component: loadAsync('index/detail') },
 			/* 表单 */
 			{ path:'/main/report-query', component: loadAsync('report-query') },
 			{ path:'/main/data-query', component: loadAsync('data-query') },

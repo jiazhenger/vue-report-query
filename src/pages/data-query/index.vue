@@ -1,5 +1,5 @@
 <template>
-	<Content isPage>
+	<Content :scrollY='false' isPage contentClass='h'>
 		<!-- tabs -->
 		<Tabs v-model='activeName' class='swrap' @change='change'>
 			<el-tab-pane name='0'>

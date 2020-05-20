@@ -286,7 +286,8 @@ const paging = (_this,api,option)=>{
 		pagingLoading:'pagingLoading',	// 加载判断
 		resetData:false,				// 是否重新设置 data，false 不允许
 //		format:{},						// 格式化时间
-		pag:'pag'
+		pag:'pag',
+        scroll:'#page'
 	}
 
 	Object.assign(opt,option || {});
@@ -328,7 +329,7 @@ const paging = (_this,api,option)=>{
 			resetData   : true,
 			dataName    : null
 		}).then(data=>{
-            const result = data.data
+            let result = data.data
 			_this[opt.pag] = {
 				..._this[opt.pag],
 				current		: +data.current_page, 		// 当前页码
@@ -336,13 +337,18 @@ const paging = (_this,api,option)=>{
 				totalPage	: +data.total_pages,		// 总共多少页
 				pageSize	: +data.per_page,			// 每页显示多少条数据
 			}
+
 			if($fn.isValid(opt.dataName)){
 //				const result = $fn.addKey(data, format);
+                if($fn.isFunction(opt.onSuccess)){
+                    result = opt.onSuccess(result);
+                }
 				_this[opt.dataName] = result
+
 				resolve(data)
 			}
 
-            const content = document.querySelector('#page')
+            const content = document.querySelector(opt.scroll)
             if(content){ content.scrollTop = 0  }
 
 			opt.callback && opt.callback(data);

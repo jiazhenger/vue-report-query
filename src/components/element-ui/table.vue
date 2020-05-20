@@ -1,24 +1,26 @@
 <template>
-	<Loading :loading='loading'>
-		<el-table
-            class                       = 'nowrap-table'
-			ref							= 'table'
-			:data						= 'data'
-			:empty-text					= 'emptyText'
-			:size 						= 'size'
-			:height 					= 'height'
-			highlight-current-row
-			@selection-change			= 'getRows($event)'
-            @row-click                  = 'onRowClick'
-			element-loading-text 		= '数据加载中'
-			element-loading-background	= 'rgba(0, 0, 0, 0.1)'
-			:style						= '{minHeight:mh}'
-            :border                     = 'border'
-		>
-            <template slot-scope='scope'>
-                <slot :scope='scope'></slot>
-            </template>
-		</el-table>
+	<Loading :loading='loading' ref='loading'>
+		<div class='ex'>
+            <el-table
+                class                       = 'nowrap-table'
+            	ref							= 'table'
+            	:data						= 'data'
+            	:empty-text					= 'emptyText'
+            	:size 						= 'size'
+            	:height 					= 'pag ? (height - 50) : height'
+            	highlight-current-row
+            	@selection-change			= 'getRows($event)'
+                @row-click                  = 'onRowClick'
+            	element-loading-text 		= '数据加载中'
+            	element-loading-background	= 'rgba(0, 0, 0, 0.1)'
+            	:style						= '{minHeight:mh}'
+                :border                     = 'border'
+            >
+                <template slot-scope='scope'>
+                    <slot :scope='scope'></slot>
+                </template>
+            </el-table>
+        </div>
 		<template v-if='fn.hasObject(pag) && fn.hasArray(data)'>
             <div class='fxm'>
                 <div class='ex'><slot name='pleft' /></div>

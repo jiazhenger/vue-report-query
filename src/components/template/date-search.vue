@@ -1,5 +1,5 @@
 <template>
-	<div>
+	<div class='wh fv'>
         <SearchBox>
         	<el-form ref='search' :inline='true' :model='model' @submit='submit'>
         		<FormItem class='auto' label='送检日期' prop='date'>
@@ -12,8 +12,8 @@
         		</FormItem>
         	</el-form>
         </SearchBox>
-        <div class='table-box'>
-            <Table ref='list' :data='data' :col='col' :pag='pag' :loading='pagingLoading' @onRowClick='onRowClick'/>
+        <div class='table-box' id='tableBox'>
+            <Table ref='list' :height='height' :data='data' :col='col' :pag='pag' :loading='pagingLoading' @onRowClick='onRowClick'/>
         </div>
     </div>
 </template>
@@ -64,10 +64,14 @@
                     }
 				},
 				pagingLoading:true,
+                height:0
 			}
 		},
         mounted(){
             this.fetch()
+            setTimeout(()=>{
+                this.height = document.querySelector('#tableBox').clientHeight
+            },100)
         },
 		methods:{
             fetch(current,param){

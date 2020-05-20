@@ -1,5 +1,5 @@
 <template>
-	<div class='rel' style='min-height:200px;'>
+	<div class='rel loading' style='min-height:200px;'>
         <slot></slot>
 		<div v-if='loading' class='abs_lt fxmc wh i10' style='right:0;top:0;background:rgba(255,255,255,0.8);'>
 			<div>
