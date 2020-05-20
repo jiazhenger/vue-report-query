@@ -69,9 +69,7 @@
 		},
         mounted(){
             this.fetch()
-            setTimeout(()=>{
-                this.height = document.querySelector('#tableBox').clientHeight
-            },100)
+            setTimeout(()=>{  this.height = document.querySelector('#tableBox').clientHeight },100)
         },
 		methods:{
             fetch(current,param){
