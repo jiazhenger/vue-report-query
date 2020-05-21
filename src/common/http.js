@@ -350,6 +350,9 @@ const paging = (_this,api,option)=>{
 
             const content = document.querySelector(opt.scroll)
             if(content){ content.scrollTop = 0  }
+            if(_this.$refs.table){
+                _this.$refs.table.reset()
+            }
 
 			opt.callback && opt.callback(data);
 		})

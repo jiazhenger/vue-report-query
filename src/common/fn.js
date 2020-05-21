@@ -136,5 +136,22 @@ export default {
 			}
 		}
 		return v
-	}
+	},
+    setHeight(_this,id){
+        const ids = id || '#tableBox'
+        let clear
+        const resize = () => {
+            _this.$nextTick(()=>{
+                clear = setTimeout(()=>{
+                    const d = document.querySelector(ids)
+                    if(d){
+                        _this.height = d.clientHeight
+                    }else{
+                        resize()
+                    }
+                },50)
+            })
+        }
+        resize()
+    }
 }

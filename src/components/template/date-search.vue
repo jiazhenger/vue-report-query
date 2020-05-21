@@ -13,7 +13,7 @@
         	</el-form>
         </SearchBox>
         <div class='table-box' id='tableBox'>
-            <Table ref='list' :height='height' :data='data' :col='col' :pag='pag' :loading='pagingLoading' @onRowClick='onRowClick'/>
+            <Table ref='table' :height='height' :data='data' :col='col' :pag='pag' :loading='pagingLoading' @onRowClick='onRowClick'/>
         </div>
     </div>
 </template>
@@ -69,7 +69,7 @@
 		},
         mounted(){
             this.fetch()
-            setTimeout(()=>{  this.height = document.querySelector('#tableBox').clientHeight },100)
+            $fn.setHeight(this)
         },
 		methods:{
             fetch(current,param){

@@ -80,7 +80,16 @@
             // 每页显示条数改变时触发
             sizeChange(v){ this.$emit('sizeChange',v)},
             // 点击行触发
-            onRowClick(v){ this.$emit('onRowClick',v) }
+            onRowClick(v){
+                this.$emit('onRowClick',v);
+            },
+            // 重置滚动条
+            reset(v){
+                const t = this.$refs.table
+                if(t && t.$el){
+                    t.$el.querySelector('.is-scrolling-none').scrollTop = 0
+                }
+            }
 		}
 	}
 </script>

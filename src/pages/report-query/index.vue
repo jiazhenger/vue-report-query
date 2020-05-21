@@ -2,50 +2,51 @@
 	<Content :scrollY='false' contentClass='h' isPage>
 		<!-- tabs -->
 		<Tabs v-model='activeName' class='swrap'>
-			<el-tab-pane label='报告单查询' name='0'></el-tab-pane>
-            <!-- search-from -->
-            <SearchBox>
-            	<el-form ref='search' :inline='true' :model='model' @submit='submit'>
-            		<FormItem label='条码号' prop='spec_code'>
-            			<Input v-model='model.spec_code' p='请输入条码号' @clear='submit' :disabled='pagingLoading'/>
-            		</FormItem>
-            		<FormItem class='auto' label='送检日期' prop='date'>
-            			<DatePicker ref='d' v-model='model.date' @clear='submit' @change='submit' :disabled='pagingLoading'/>
-            		</FormItem>
-            		<FormItem label='病人姓名' prop='patient_name'>
-            			<Input v-model='model.patient_name' p='请输入病人姓名' @clear='submit' :disabled='pagingLoading'/>
-            		</FormItem>
-            		<FormItem label='检测项目' prop='kind_name'>
-            			<Input v-model='model.kind_name' p='请输入检测项目' @clear='submit' :disabled='pagingLoading'/>
-            		</FormItem>
-            		<FormItem label='样本状态' prop='status'>
-            			<Select v-model='model.status' p='请输入样本状态' @clear='submit' :disabled='pagingLoading' :data='[]'/>
-            		</FormItem>
-            		<FormItem class='auto'>
-            			<Button label='查询' native-type='submit'  @click='submit($event)' :loading='pagingLoading'/>
-            			<Button label='重置' plain @click='reset' :disabled='pagingLoading'/>
-            			<Button label='报告预览' plain :disabled='pagingLoading'/>
-            			<Button label='打印' plain :disabled='pagingLoading'/>
-            		</FormItem>
-            	</el-form>
-            </SearchBox>
-            <!-- table -->
-            <div class='table-box'>
-            	<div class='fx h'>
-                    <div class='fv h' id='tableBox' :style="{width:fn.hasArray(data2)?'60%':'100%'}">
-                    	<Table ref='list' :height='height' :data='data' :col='col' @select='onSelect' :pag='pag' :loading='pagingLoading' @onRowClick='onRowClick'>
-                            <template slot='pleft'>
-                                <dl class='x-fl f12 g9'>
-                                    <dd class='mr5' v-for='(v,i) in pdata'>{{v.name}}: 【{{v.total}}】{{(i < (pdata.length-1)) ? ',' : ''}}</dd>
-                                </dl>
-                            </template>
-                        </Table>
-                    </div>
-                    <div v-if='fn.hasArray(data2)' class='ml10 rel ' style='width:calc(40% - 10px)'>
-                        <Table :height='height' :data='data2' :col='col2'/>
+			<el-tab-pane label='报告单查询' name='0'>
+                <!-- search-from -->
+                <SearchBox>
+                    <el-form ref='search' :inline='true' :model='model' @submit='submit'>
+                        <FormItem label='条码号' prop='spec_code'>
+                            <Input v-model='model.spec_code' p='请输入条码号' @clear='submit' :disabled='pagingLoading'/>
+                        </FormItem>
+                        <FormItem class='auto' label='送检日期' prop='date'>
+                            <DatePicker ref='d' v-model='model.date' @clear='submit' @change='submit' :disabled='pagingLoading'/>
+                        </FormItem>
+                        <FormItem label='病人姓名' prop='patient_name'>
+                            <Input v-model='model.patient_name' p='请输入病人姓名' @clear='submit' :disabled='pagingLoading'/>
+                        </FormItem>
+                        <FormItem label='检测项目' prop='kind_name'>
+                            <Input v-model='model.kind_name' p='请输入检测项目' @clear='submit' :disabled='pagingLoading'/>
+                        </FormItem>
+                        <FormItem label='样本状态' prop='status'>
+                            <Select v-model='model.status' p='请输入样本状态' @clear='submit' :disabled='pagingLoading' :data='[]'/>
+                        </FormItem>
+                        <FormItem class='auto'>
+                            <Button label='查询' native-type='submit'  @click='submit($event)' :loading='pagingLoading'/>
+                            <Button label='重置' plain @click='reset' :disabled='pagingLoading'/>
+                            <Button label='报告预览' plain :disabled='pagingLoading'/>
+                            <Button label='打印' plain :disabled='pagingLoading'/>
+                        </FormItem>
+                    </el-form>
+                </SearchBox>
+                <!-- table -->
+                <div class='table-box'>
+                    <div class='fx h'>
+                        <div class='fv h' id='tableBox' :style="{width:fn.hasArray(data2)?'70%':'100%'}">
+                            <Table ref='table' :height='height' :data='data' :col='col' @select='onSelect' :pag='pag' :loading='pagingLoading' @onRowClick='onRowClick'>
+                                <template slot='pleft'>
+                                    <dl class='x-fl f12 g9'>
+                                        <dd class='mr5' v-for='(v,i) in pdata'>{{v.name}}: 【{{v.total}}】{{(i < (pdata.length-1)) ? ',' : ''}}</dd>
+                                    </dl>
+                                </template>
+                            </Table>
+                        </div>
+                        <div v-if='fn.hasArray(data2)' class='ml10 rel ' style='width:calc(30% - 10px)'>
+                            <Table :height='height' :data='data2' :col='col2'/>
+                        </div>
                     </div>
                 </div>
-            </div>
+            </el-tab-pane>
 	  	</Tabs>
 	</Content>
 </template>
@@ -107,14 +108,12 @@
 		        	{ prop:'tips', label:'提示' },
                     { prop:'reference', label:'参考范围' },
 		        ],
-                height:0
+                height:0,
 			}
 		},
 		mounted(){
 			this.fetch()
-            setTimeout(()=>{
-                this.height = document.querySelector('#tableBox').clientHeight
-            },100)
+            $fn.setHeight(this)
 		},
 		methods:{
 			// ajax

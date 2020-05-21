@@ -21,5 +21,5 @@ module.exports = {
 	api : api, 	// api
 	env : env, 	// 环境变量
 	contentType: 1,
-    pageSize: 5
+    pageSize: 20
 }
