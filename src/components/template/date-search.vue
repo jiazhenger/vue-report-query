@@ -35,19 +35,24 @@
             col:{
                 type:Array,
                 default:() => [
-                    { prop:'spec_code', 	label:'条码号', width:'120px' },
-                    { prop:'patient_name', 	label:'病人姓名'},
-                    { prop:'sex', label:'性别', align:'center' },
-                    { prop:'age', label:'年龄', align:'center' },
-                    { prop:'outpatient', label:'门诊/住院号', width:'100px' },
-                    { prop:'department_name', label:'科室' },
-                    { prop:'doctor', label:'送检医生' },
-                    { prop:'project_name', label:'项目名称' },
-                    { prop:'check_status', label:'检测状态' },
-                    { prop:'check_time', label:'检测时间', width:'140px' },
-                    { prop:'report_time', label:'报告时间', width:'140px' },
-                    { prop:'print_time', label:'打印时间（首次）', width:'140px' },
-                    { prop:'print_times', label:'打印次数' }
+                    { prop:'spec_code', 	    label:'条码号',			width:'120px' },
+                    { prop:'patient_name', 	    label:'病人姓名' },
+                    { prop:'sex',               label:'性别',			align:'center' },
+                    { prop:'age',               label:'年龄',			align:'center' },
+                    { prop:'outpatient',        label:'门诊/住院号',		width:'100px' },
+                    { prop:'department_name',   label:'科室' },
+                    { prop:'doctor',            label:'送检医生' },
+                    { prop:'spec_type',         label:'样本类型' },
+                    { prop:'coll_time',         label:'采样日期',       width:'140px',    align:'center' },
+                    { prop:'check_time',        label:'送检日期',       width:'140px',    align:'center' },
+                    { prop:'check_department',  label:'审核日期',       width:'140px',    align:'center' },
+                    { prop:'doctor',            label:'检验人' },
+                    { prop:'audit',             label:'审核人' },
+                    { prop:'kind_name',         label:'检测项目',       width:'200px' },
+                    { prop:'kind_name_en',      label:'检测项目英文' },
+                    { prop:'result',            label:'结果' },
+                    { prop:'unit_val',          label:'单位' },
+                    { prop:'range',             label:'参考范围' }
                 ]
             },
             hasImport:{ type:Boolean, default:false }

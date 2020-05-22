@@ -87,7 +87,10 @@
             reset(v){
                 const t = this.$refs.table
                 if(t && t.$el){
-                    t.$el.querySelector('.is-scrolling-none').scrollTop = 0
+                    const q = t.$el.querySelector('.is-scrolling-none')
+                    if(q){
+                        q.scrollTop = 0
+                    }
                 }
             }
 		}

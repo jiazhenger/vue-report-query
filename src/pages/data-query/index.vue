@@ -5,7 +5,7 @@
 			<el-tab-pane name='0'>
 				<span slot='label'>常规检测</span>
                 <!-- search-from -->
-				<DateSearch ref='tab0' hasImport v-if='active0'/>
+				<DateSearch ref='tab0' hasImport v-if='active0' api='report/routine'/>
 			</el-tab-pane>
 			<el-tab-pane name='1'>
 				<span slot='label'>病理结果</span>
@@ -34,7 +34,7 @@
 				activeName:'0',
                 active0:true,
                 active1:false,
-                active2:false
+                active2:false,
 			}
 		},
 		mounted(){

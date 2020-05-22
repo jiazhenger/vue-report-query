@@ -149,7 +149,7 @@ export default {
                     }else{
                         resize()
                     }
-                },50)
+                },100)
             })
         }
         resize()

@@ -51,14 +51,14 @@
                 fn:$fn,
 				activeName:'0',
                 col:[
-                    { prop:'spec_code', 	label:'条码号', width:'120px' },
+                    { prop:'spec_code', 	label:'条码号',		width:'120px' },
                     { prop:'patient_name', 	label:'病人姓名'},
-                    { prop:'sex', label:'性别', align:'center', width:'80px' },
-                    { prop:'age', label:'年龄', align:'center', width:'80px' },
-                    { prop:'project_name', label:'项目名称' },
-                    { prop:'delivery_time', label:'送检日期', width:'140px' },
-                    { prop:'hospital', label:'送检单位', },
-                    { prop:'check_time', label:'检测日期', width:'140px' },
+                    { prop:'sex', 			label:'性别',		width:'80px',	align:'center' },
+                    { prop:'age', 			label:'年龄',		width:'80px', 	align:'center' },
+                    { prop:'project_name', 	label:'项目名称' },
+                    { prop:'delivery_time', label:'送检日期',	width:'140px' },
+                    { prop:'hospital', 		label:'送检单位' },
+                    { prop:'check_time', 	label:'检测日期',	width:'140px' },
                 ],
                 data:{}
 			}
